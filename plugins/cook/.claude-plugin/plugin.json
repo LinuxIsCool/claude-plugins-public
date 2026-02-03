@@ -1,0 +1,12 @@
+{
+  "name": "cook",
+  "version": "0.1.0",
+  "description": "Meta-orchestration engine for recursive self-improvement",
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": [
+    "./agents/cook.md",
+    "./agents/emergence-tracker.md",
+    "./agents/self-improver.md"
+  ]
+}

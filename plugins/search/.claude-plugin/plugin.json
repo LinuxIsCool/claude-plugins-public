@@ -1,0 +1,22 @@
+{
+  "name": "search",
+  "version": "0.1.0",
+  "description": "Master search plugin for code repositories. Covers hybrid search (BM25 + vector), RAG pipelines, embeddings, Graph RAG, fuzzy search, ripgrep patterns, and ElasticSearch. Self-improving skillsets that learn from usage patterns.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "search",
+    "rag",
+    "hybrid-search",
+    "vector-search",
+    "embeddings",
+    "graph-rag",
+    "fuzzy-search",
+    "ripgrep",
+    "elasticsearch"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/navigator.md"]
+}

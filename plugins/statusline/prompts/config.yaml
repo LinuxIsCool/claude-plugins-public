@@ -1,0 +1,24 @@
+# Prompt Version Configuration
+#
+# This file tracks which prompt version is active for each function.
+# To switch versions: change the value and restart Claude Code.
+#
+# Format: <function>: <version_number>_<version_name>
+#
+# The system loads: prompts/<function>/<version>.md
+
+active:
+  name: 1_ecosystem_aware
+  description: 1_plugin_role
+  summary: 1_feature_level
+
+# Version History
+#
+# name:
+#   1_ecosystem_aware: Initial versioned prompt, ecosystem-aware naming
+#
+# description:
+#   1_plugin_role: Initial versioned prompt, [Plugin] [Role] format
+#
+# summary:
+#   1_feature_level: Initial versioned prompt, feature-level granularity

@@ -1,0 +1,29 @@
+{
+  "name": "tbff",
+  "version": "0.1.0",
+  "description": "Threshold-Based Flow Funding - A multi-agent team for building conditions for abundance. Agents: myco-civic, frontend-engineer, systems-data-scientist, grassroots-economist, project-manager, liaison.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "flow-funding",
+    "web3",
+    "superfluid",
+    "regenerative-economics",
+    "coordination",
+    "abundance",
+    "mycofi",
+    "federation"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": [
+    "./agents/myco-civic.md",
+    "./agents/frontend-engineer.md",
+    "./agents/systems-data-scientist.md",
+    "./agents/grassroots-economist.md",
+    "./agents/project-manager.md",
+    "./agents/liaison.md",
+    "./agents/marimo-specialist.md"
+  ]
+}

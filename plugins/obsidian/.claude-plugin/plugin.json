@@ -1,0 +1,30 @@
+{
+  "name": "obsidian",
+  "version": "0.1.0",
+  "description": "Obsidian vault management, automatic wikilink injection, graph configuration, and Quartz deployment for Claude Code knowledge visualization",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["obsidian", "wikilinks", "graph", "quartz", "visualization", "knowledge"],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": [
+    "./agents/graph-curator.md",
+    "./agents/link-suggester.md",
+    "./agents/vault-health.md",
+    "./agents/visualizer.md"
+  ],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/wikilink_injector.py"
+          }
+        ]
+      }
+    ]
+  }
+}

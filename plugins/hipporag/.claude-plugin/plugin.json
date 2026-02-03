@@ -1,0 +1,22 @@
+{
+  "name": "hipporag",
+  "version": "0.1.0",
+  "description": "Neurobiologically-inspired RAG with OpenIE knowledge graphs and Personalized PageRank. Memory-centric retrieval for multi-hop reasoning and associative recall.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "hipporag",
+    "rag",
+    "knowledge-graph",
+    "memory",
+    "retrieval",
+    "openie",
+    "pagerank",
+    "multi-hop",
+    "biomimetic"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/memory-architect.md"]
+}

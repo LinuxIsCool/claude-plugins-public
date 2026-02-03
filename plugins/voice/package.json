@@ -1,0 +1,54 @@
+{
+  "name": "@plugins/voice",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Voice input/output for Claude Code ecosystem - STT, TTS, tmux control, agent voices",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tts": "./src/adapters/tts/index.ts",
+    "./stt": "./src/adapters/stt/index.ts",
+    "./identity": "./src/identity/resolver.ts",
+    "./quality": "./src/quality/index.ts",
+    "./coordination": "./src/coordination/index.ts",
+    "./ports/*": "./src/ports/*.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src/",
+    "hook": "bun run hooks/voice-hook.ts",
+    "live-transcribe": "bun run src/cli/live-transcribe.ts",
+    "daemon": "bun run bin/voice-daemon.ts",
+    "daemon:start": "bun run bin/voice-daemon.ts start",
+    "daemon:stop": "bun run bin/voice-daemon.ts stop",
+    "daemon:status": "bun run bin/voice-daemon.ts status",
+    "quality:benchmark": "bun run src/quality/cli.ts benchmark",
+    "quality:compare": "bun run src/quality/cli.ts compare",
+    "quality:regression": "bun run src/quality/cli.ts regression",
+    "quality:baseline": "bun run src/quality/cli.ts baseline",
+    "quality:list": "bun run src/quality/cli.ts list"
+  },
+  "dependencies": {
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "voice",
+    "tts",
+    "stt",
+    "speech",
+    "audio",
+    "claude",
+    "elevenlabs",
+    "whisper"
+  ],
+  "author": "linuxiscool",
+  "license": "MIT"
+}

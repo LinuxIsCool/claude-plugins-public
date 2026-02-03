@@ -1,0 +1,21 @@
+{
+  "name": "journal",
+  "version": "0.1.0",
+  "description": "Obsidian-style linked journal with zettelkasten atomic notes. Supports yearly, monthly, and daily entries with planning and reflection skills.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "journal",
+    "diary",
+    "zettelkasten",
+    "obsidian",
+    "planning",
+    "reflection",
+    "notes",
+    "pkm"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/scribe.md"]
+}

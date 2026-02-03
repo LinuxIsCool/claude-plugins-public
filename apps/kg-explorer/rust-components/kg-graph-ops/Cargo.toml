@@ -1,0 +1,35 @@
+[package]
+name = "kg-graph-ops"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Graph algorithms optimized for knowledge graphs: PageRank, community detection, pathfinding"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["parallel"]
+parallel = ["rayon"]
+wasm = ["wasm-bindgen", "js-sys"]
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+rayon = { workspace = true, optional = true }
+wasm-bindgen = { workspace = true, optional = true }
+js-sys = { workspace = true, optional = true }
+petgraph = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+hashbrown = { workspace = true }
+smallvec = { workspace = true }
+indexmap = { workspace = true }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[[bench]]
+name = "graph_benchmarks"
+harness = false

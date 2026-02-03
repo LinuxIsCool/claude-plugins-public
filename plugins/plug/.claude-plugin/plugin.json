@@ -1,0 +1,11 @@
+{
+  "name": "plug",
+  "version": "0.1.0",
+  "description": "A lazy.nvim-style plugin manager for Claude Code. Install Plug once, then Plug manages everything else.",
+  "author": "ygg",
+  "homepage": "https://github.com/linuxiscool/plug",
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/plug.md"],
+  "hooks": []
+}

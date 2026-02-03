@@ -1,0 +1,45 @@
+{
+  "name": "conductor",
+  "version": "0.1.0",
+  "description": "Central consciousness agent for ecosystem orchestration - maintains user model, pulse, anticipations, and rituals",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "conductor",
+    "orchestration",
+    "trust",
+    "autonomy",
+    "user-model",
+    "multi-agent",
+    "consciousness"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-end.py"
+          }
+        ]
+      }
+    ]
+  }
+}

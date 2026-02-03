@@ -1,0 +1,51 @@
+{
+  "projectName": "My Schedule",
+  "weekStartsOn": "monday",
+  "dayStartHour": 6,
+  "dayEndHour": 22,
+  "timeSlotMinutes": 30,
+  "defaultPort": 6421,
+  "categories": {
+    "work": {
+      "id": "work",
+      "label": "Work",
+      "color": "#3b82f6"
+    },
+    "yoga": {
+      "id": "yoga",
+      "label": "Yoga",
+      "color": "#22c55e"
+    },
+    "meal": {
+      "id": "meal",
+      "label": "Meal",
+      "color": "#eab308"
+    },
+    "outdoor": {
+      "id": "outdoor",
+      "label": "Outdoor",
+      "color": "#14b8a6"
+    },
+    "therapy": {
+      "id": "therapy",
+      "label": "Therapy",
+      "color": "#ec4899"
+    },
+    "chores": {
+      "id": "chores",
+      "label": "Chores",
+      "color": "#a855f7"
+    },
+    "groceries": {
+      "id": "groceries",
+      "label": "Groceries",
+      "color": "#f97316"
+    }
+  },
+  "integrations": {
+    "googleCalendar": {
+      "enabled": false,
+      "calendars": []
+    }
+  }
+}

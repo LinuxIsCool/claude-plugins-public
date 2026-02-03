@@ -1,0 +1,13 @@
+{
+  "name": "memory",
+  "displayName": "Memory Plugin",
+  "description": "Comprehensive agent memory system with multiple framework skillsets including agentmemory, HippoRAG, mem0, claude-mem patterns, and embeddings expertise. Provides hot/warm/cold memory tiers with automatic context injection.",
+  "version": "0.1.0",
+  "author": "observatory",
+  "skills": ["./skills/"],
+  "agents": [
+    "./agents/memory-master.md"
+  ],
+  "hooks": ["./hooks/"],
+  "commands": ["./commands/"]
+}

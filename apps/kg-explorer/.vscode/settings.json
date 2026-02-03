@@ -1,0 +1,207 @@
+{
+  // Editor Settings
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.suggest.showStatusBar": true,
+  "editor.inlineSuggest.enabled": true,
+
+  // TypeScript Settings
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // ESLint Settings
+  "eslint.enable": true,
+  "eslint.workingDirectories": ["."],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // Prettier Settings
+  "prettier.requireConfig": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Tailwind CSS Settings
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+
+  // Files Settings
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/coverage": true,
+    "**/.turbo": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // Search Settings
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.next": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/*.lock": true,
+    "**/package-lock.json": true
+  },
+
+  // Testing Settings
+  "vitest.enable": true,
+  "vitest.commandLine": "npx vitest",
+
+  // Git Settings
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+
+  // Todo Tree Settings
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME",
+    "HACK",
+    "BUG",
+    "XXX",
+    "PERF",
+    "NOTE"
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "tag",
+    "foreground": "#000000",
+    "background": "#ffcc00"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "FIXME": {
+      "background": "#ff6666"
+    },
+    "BUG": {
+      "background": "#ff4444"
+    },
+    "HACK": {
+      "background": "#ff9933"
+    },
+    "PERF": {
+      "background": "#00cc99"
+    },
+    "NOTE": {
+      "background": "#66ccff"
+    }
+  },
+
+  // Better Comments Settings
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+
+  // Error Lens Settings
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "errorLens.excludeBySource": ["ts(80001)"],
+
+  // Spell Checker Settings
+  "cSpell.words": [
+    "codegen",
+    "cypher",
+    "falkordb",
+    "graphql",
+    "ndjson",
+    "ontology",
+    "subgraph",
+    "typedb",
+    "typeql",
+    "vitest"
+  ],
+
+  // Terminal Settings
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.env.linux": {
+    "NODE_OPTIONS": "--max-old-space-size=4096"
+  }
+}

@@ -1,0 +1,26 @@
+# Research repositories (cloned for reference)
+.research/
+
+# Node modules in research
+**/node_modules/
+
+# Python virtual environments
+**/.venv/
+**/venv/
+
+# Build artifacts
+**/__pycache__/
+**/.pytest_cache/
+**/dist/
+**/build/
+
+# IDE
+**/.idea/
+**/.vscode/
+
+# Logs (keep structure, ignore content)
+.claude/logging/**/*.jsonl
+.claude/logging/**/*.cache.json
+
+# Local config
+*.local.md

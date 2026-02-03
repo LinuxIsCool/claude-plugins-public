@@ -1,0 +1,33 @@
+{
+  "name": "dev-tools",
+  "version": "0.1.0",
+  "description": "Developer experience tools: automatic plugin cache invalidation, stale cache detection, and reload commands",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["development", "cache", "plugins", "dx"],
+  "commands": ["./commands/"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/cache_invalidator.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/stale_cache_detector.py"
+          }
+        ]
+      }
+    ]
+  }
+}

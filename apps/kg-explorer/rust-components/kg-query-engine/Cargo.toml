@@ -1,0 +1,35 @@
+[package]
+name = "kg-query-engine"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "High-performance query parsing, planning, and execution for knowledge graphs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["parallel", "simd"]
+parallel = ["rayon"]
+simd = []
+wasm = ["wasm-bindgen", "js-sys"]
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+rayon = { workspace = true, optional = true }
+wasm-bindgen = { workspace = true, optional = true }
+js-sys = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+indexmap = { workspace = true }
+smallvec = { workspace = true }
+hashbrown = { workspace = true }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[[bench]]
+name = "query_benchmarks"
+harness = false

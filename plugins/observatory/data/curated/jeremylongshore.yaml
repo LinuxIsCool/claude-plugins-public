@@ -1,0 +1,157 @@
+# Curated catalog from jeremylongshore/claude-code-plugins-plus-skills
+# Source: https://github.com/jeremylongshore/claude-code-plugins-plus-skills
+
+source: jeremylongshore-plugins
+lastUpdated: "2026-01-15T10:00:00Z"
+
+# Plugin categories and selected plugins
+plugins:
+  # AI & ML Category
+  - name: jeremy-google-adk
+    description: Google Agent Development Kit for building React pattern agents with multi-agent orchestration and tool integration capabilities.
+    capabilities: [ai-ml, llm-tooling]
+    status: production-ready
+
+  - name: jeremy-vertex-ai
+    description: Vertex AI and Gemini integration framework supporting generative models, RAG, multimodal processing, and production deployment.
+    capabilities: [ai-ml, llm-tooling, rag]
+    status: production-ready
+
+  - name: jeremy-genkit
+    description: Firebase Genkit multi-model framework enabling orchestration across JavaScript, Python, and Go environments.
+    capabilities: [ai-ml, llm-tooling]
+    status: production-ready
+
+  # Business Tools
+  - name: jeremy-excel-analyst-pro
+    description: Financial modeling plugin providing DCF analysis, leveraged buyout frameworks, variance analysis, and pivot table functionality.
+    capabilities: [finance, data-engineering]
+    status: production-ready
+    version: "1.0.0"
+
+  # API Development
+  - name: api-development-pack
+    description: Tools and patterns for building robust APIs with validation, documentation, and testing.
+    capabilities: [api-design, backend-development]
+
+  # Automation
+  - name: mattyp-changelog
+    description: Automated changelog generation from git commits.
+    capabilities: [documentation, devops-cicd]
+
+  # Database
+  - name: database-optimization-pack
+    description: Query optimization, indexing strategies, and database management tools.
+    capabilities: [database-management, performance-optimization]
+
+  # DevOps
+  - name: devops-automation-pack
+    description: CI/CD automation, deployment scripts, and infrastructure tools.
+    capabilities: [devops-cicd, cloud-infrastructure]
+
+  # Finance
+  - name: openbb-terminal
+    description: OpenBB Terminal integration for financial data analysis and market research.
+    capabilities: [finance, data-engineering]
+
+  # Performance
+  - name: performance-monitoring-pack
+    description: Application performance monitoring, profiling, and optimization tools.
+    capabilities: [performance-optimization, monitoring]
+
+  # Security
+  - name: security-audit-pack
+    description: Security scanning, vulnerability detection, and compliance checking tools.
+    capabilities: [security-audit]
+
+  # Testing
+  - name: testing-automation-pack
+    description: Test automation frameworks, coverage tools, and testing utilities.
+    capabilities: [testing]
+
+  # Productivity
+  - name: productivity-pack
+    description: Time management, task tracking, and workflow optimization tools.
+    capabilities: [project-management]
+
+  # SaaS Packs
+  - name: saas-starter-pack
+    description: Boilerplate and patterns for building SaaS applications.
+    capabilities: [backend-development, frontend-development]
+
+  # Skill Enhancers
+  - name: web-search-enhancer
+    description: Enhanced web search capabilities with better filtering and summarization.
+    capabilities: [research]
+
+  - name: web-fetch-enhancer
+    description: Improved web fetching with caching and rate limiting.
+    capabilities: [research]
+
+# MCP Servers
+mcpServers:
+  - name: project-health-auditor
+    description: Audit project health metrics and dependencies.
+    capabilities: [project-management, code-review]
+
+  - name: conversational-api-debugger
+    description: Interactive API debugging with conversation context.
+    capabilities: [api-design, debugging]
+
+  - name: domain-memory-agent
+    description: Persistent memory for domain-specific knowledge.
+    capabilities: [ai-ml, llm-tooling]
+
+  - name: design-to-code
+    description: Convert design mockups to code.
+    capabilities: [frontend-development]
+
+  - name: git-commit-smart
+    description: Intelligent git commit message generation.
+    capabilities: [devops-cicd]
+
+  - name: overnight-dev
+    description: Background development tasks for long-running operations.
+    capabilities: [devops-cicd]
+
+# Skills (categories with counts)
+skillCategories:
+  - category: AI/ML Skills
+    count: 120
+    capabilities: [ai-ml, llm-tooling]
+
+  - category: DevOps Skills
+    count: 85
+    capabilities: [devops-cicd, cloud-infrastructure]
+
+  - category: Security Skills
+    count: 65
+    capabilities: [security-audit]
+
+  - category: API Development Skills
+    count: 78
+    capabilities: [api-design, backend-development]
+
+  - category: Database Skills
+    count: 52
+    capabilities: [database-management]
+
+  - category: Testing Skills
+    count: 68
+    capabilities: [testing]
+
+  - category: Frontend Skills
+    count: 95
+    capabilities: [frontend-development]
+
+  - category: Documentation Skills
+    count: 42
+    capabilities: [documentation]
+
+  - category: Performance Skills
+    count: 38
+    capabilities: [performance-optimization]
+
+  - category: Other Skills
+    count: 96
+    capabilities: []

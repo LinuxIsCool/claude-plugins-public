@@ -1,0 +1,70 @@
+[workspace]
+resolver = "2"
+members = [
+    "kg-query-engine",
+    "kg-embeddings",
+    "kg-graph-ops",
+    "kg-temporal",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["KG Explorer Team"]
+license = "MIT"
+repository = "https://github.com/kg-explorer/rust-components"
+
+[workspace.dependencies]
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Parallelism
+rayon = "1.10"
+
+# WASM support
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = ["console"] }
+wasm-bindgen-futures = "0.4"
+
+# Graph structures
+petgraph = "0.6"
+
+# Error handling
+thiserror = "2.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+
+# Memory mapping
+memmap2 = "0.9"
+
+# Compression
+lz4_flex = "0.11"
+zstd = "0.13"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Collections
+indexmap = { version = "2.7", features = ["serde"] }
+smallvec = { version = "1.13", features = ["serde"] }
+hashbrown = { version = "0.15", features = ["serde"] }
+
+# Testing and benchmarks
+criterion = { version = "0.5", features = ["html_reports"] }
+
+# Async runtime (for parallel operations)
+tokio = { version = "1.43", features = ["rt-multi-thread", "sync"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.bench]
+lto = true
+codegen-units = 1

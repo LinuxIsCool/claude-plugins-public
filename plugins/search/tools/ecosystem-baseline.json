@@ -1,0 +1,80 @@
+{
+  "suite_name": "ecosystem",
+  "timestamp": "2025-12-18T10:28:40.346255",
+  "configs": [
+    {
+      "name": "vector",
+      "elapsed_seconds": 4.144415378570557,
+      "metrics": {
+        "mrr": 0.0,
+        "precision": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "ndcg": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "num_queries": 81
+      }
+    },
+    {
+      "name": "hybrid",
+      "elapsed_seconds": 10.882360935211182,
+      "metrics": {
+        "mrr": 0.0,
+        "precision": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "recall": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "ndcg": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0
+        },
+        "num_queries": 81
+      }
+    }
+  ],
+  "category_breakdown": {
+    "entity": {
+      "vector": 0.0,
+      "hybrid": 0.0
+    },
+    "confirmation": {
+      "vector": 0.0,
+      "hybrid": 0.0
+    },
+    "discovery": {
+      "vector": 0.0,
+      "hybrid": 0.0
+    },
+    "process": {
+      "vector": 0.0,
+      "hybrid": 0.0
+    },
+    "historical": {
+      "vector": 0.0,
+      "hybrid": 0.0
+    }
+  }
+}

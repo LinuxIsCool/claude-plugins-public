@@ -1,0 +1,274 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // Development
+    {
+      "label": "dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "dev:mock",
+      "type": "shell",
+      "command": "npx tsx scripts/dev-server.ts --mock",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "playground",
+      "type": "shell",
+      "command": "npx tsx scripts/playground-server.ts",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+
+    // Build
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "npm run build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "type-check",
+      "type": "shell",
+      "command": "npx tsc --noEmit",
+      "group": "build",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "type-check:watch",
+      "type": "shell",
+      "command": "npx tsc --noEmit --watch",
+      "group": "build",
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true
+    },
+
+    // Testing
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "npm run test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "test:watch",
+      "type": "shell",
+      "command": "npx vitest",
+      "group": "test",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "test:coverage",
+      "type": "shell",
+      "command": "npx vitest run --coverage",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "test:e2e",
+      "type": "shell",
+      "command": "npx playwright test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "test:e2e:ui",
+      "type": "shell",
+      "command": "npx playwright test --ui",
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // Linting & Formatting
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "npm run lint",
+      "group": "build",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "lint:fix",
+      "type": "shell",
+      "command": "npx eslint --fix .",
+      "group": "build",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "format",
+      "type": "shell",
+      "command": "npx prettier --write .",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "format:check",
+      "type": "shell",
+      "command": "npx prettier --check .",
+      "group": "build",
+      "problemMatcher": []
+    },
+
+    // Code Generation
+    {
+      "label": "codegen:types",
+      "type": "shell",
+      "command": "npx tsx codegen/generate-types.ts",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "codegen:graphql",
+      "type": "shell",
+      "command": "npx tsx codegen/generate-graphql.ts",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "codegen:fixtures",
+      "type": "shell",
+      "command": "npx tsx codegen/generate-fixtures.ts",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "codegen:all",
+      "type": "shell",
+      "command": "npx tsx codegen/generate-types.ts && npx tsx codegen/generate-graphql.ts && npx tsx codegen/generate-fixtures.ts",
+      "group": "build",
+      "problemMatcher": []
+    },
+
+    // CLI Tools
+    {
+      "label": "kg:query",
+      "type": "shell",
+      "command": "npx tsx cli/kg-query.ts",
+      "group": "none",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "focus": true
+      }
+    },
+    {
+      "label": "kg:import",
+      "type": "shell",
+      "command": "npx tsx cli/kg-import.ts",
+      "group": "none",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "focus": true
+      }
+    },
+    {
+      "label": "kg:validate",
+      "type": "shell",
+      "command": "npx tsx cli/kg-validate.ts all --verbose",
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "kg:benchmark",
+      "type": "shell",
+      "command": "npx tsx cli/kg-benchmark.ts all",
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "kg:iterate",
+      "type": "shell",
+      "command": "npx tsx cli/kg-iterate.ts start --dry-run",
+      "group": "none",
+      "problemMatcher": []
+    },
+
+    // Validation
+    {
+      "label": "validate:schema",
+      "type": "shell",
+      "command": "npx tsx cli/kg-validate.ts schema",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "validate:all",
+      "type": "shell",
+      "command": "npx tsx cli/kg-validate.ts all",
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // Benchmarks
+    {
+      "label": "benchmark:queries",
+      "type": "shell",
+      "command": "npx tsx cli/kg-benchmark.ts queries",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "benchmark:traversal",
+      "type": "shell",
+      "command": "npx tsx cli/kg-benchmark.ts traversal",
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // Dependencies
+    {
+      "label": "install",
+      "type": "shell",
+      "command": "npm install",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "update",
+      "type": "shell",
+      "command": "npm update",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "clean",
+      "type": "shell",
+      "command": "rm -rf node_modules .next coverage dist",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "clean:install",
+      "type": "shell",
+      "command": "rm -rf node_modules package-lock.json && npm install",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

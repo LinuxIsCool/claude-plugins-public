@@ -1,0 +1,23 @@
+{
+  "name": "interface",
+  "version": "0.1.0",
+  "description": "Interface stack navigation for Claude Code. Understands the vertical layers through which Claude operates: CLI, tmux, nvim, fish, alacritty, Linux kernel, Pop!_OS. Complements exploration (horizontal) with depth (vertical).",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "interface",
+    "stack",
+    "tmux",
+    "nvim",
+    "fish",
+    "alacritty",
+    "linux",
+    "popos",
+    "navigation",
+    "layers"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/interface-navigator.md"]
+}

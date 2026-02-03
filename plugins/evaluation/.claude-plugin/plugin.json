@@ -1,0 +1,20 @@
+{
+  "name": "evaluation",
+  "version": "0.1.0",
+  "description": "Automated system evaluation for the claude-plugins ecosystem. Uses HippoRAG for knowledge retrieval and multi-dimensional quality assessment of briefings, extractions, and agent outputs.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "evaluation",
+    "quality",
+    "hipporag",
+    "metrics",
+    "briefings",
+    "extractions",
+    "testing"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/evaluator.md"]
+}

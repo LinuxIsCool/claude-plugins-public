@@ -1,0 +1,412 @@
+[
+  {
+    "text": "Where is the vis?",
+    "timestamp": "2025-12-16T13:22:42.179811",
+    "session": "08-46-43-d49e6b0a"
+  },
+  {
+    "text": "OK. Is this work owned by a particular agent? Are we developing particular skills around our practices that we are developing here? ultrathink with awareness.",
+    "timestamp": "2025-12-16T13:24:02.753493",
+    "session": "08-46-43-d49e6b0a"
+  },
+  {
+    "text": "What is the registry?",
+    "timestamp": "2025-12-16T15:47:24.411186",
+    "session": "15-43-45-e05dab22"
+  },
+  {
+    "text": "Instances should not update their own summaries, it should be done automatically using hooks. Can you do this using headless claude?",
+    "timestamp": "2025-12-16T16:21:20.680182",
+    "session": "15-43-45-e05dab22"
+  },
+  {
+    "text": "OK awesome. I appreciate that. What's the system using now? Headless claude or API? And when does it get updated? For what hooks is it updated?",
+    "timestamp": "2025-12-16T17:13:34.254606",
+    "session": "15-43-45-e05dab22"
+  },
+  {
+    "text": "Wait... did you delete the registry file?!",
+    "timestamp": "2025-12-16T17:59:10.915087",
+    "session": "15-43-45-e05dab22"
+  },
+  {
+    "text": "Did the registration hook fire? Why did this agent become named Opus?",
+    "timestamp": "2025-12-16T18:13:39.785172",
+    "session": "18-11-47-62e5188c"
+  },
+  {
+    "text": "No it should be using headless claude to use haiku to generate a name based off the first user submit prompt in the thread. Was I duped by a previous agent who said they implemented this?",
+    "timestamp": "2025-12-16T18:15:18.544688",
+    "session": "18-11-47-62e5188c"
+  },
+  {
+    "text": "Can you change the default agent name from the model (like Opus) to Claude?",
+    "timestamp": "2025-12-16T18:23:42.290064",
+    "session": "18-11-47-62e5188c"
+  },
+  {
+    "text": "I'm wondering if the temporal timestamps plugin should show date and time instead of just time?",
+    "timestamp": "2025-12-16T08:51:50.900677",
+    "session": "08-26-26-0a8bf3f1"
+  },
+  {
+    "text": "Can claude code plugins contain output styles?",
+    "timestamp": "2025-12-16T12:55:07.150075",
+    "session": "12-54-55-56d52765"
+  },
+  {
+    "text": "Can plugins distribute general folders? Is there a workaround there?",
+    "timestamp": "2025-12-16T12:56:31.294668",
+    "session": "12-54-55-56d52765"
+  },
+  {
+    "text": "Where is it documented?",
+    "timestamp": "2025-12-16T08:28:00.932171",
+    "session": "08-28-00-fadb45f5"
+  },
+  {
+    "text": "What does this imply for our repository? ultrathink",
+    "timestamp": "2025-12-15T09:44:28.214364",
+    "session": "09-44-28-7b98de99"
+  },
+  {
+    "text": "How can I see the entire network of all my journal files? ultrathink",
+    "timestamp": "2025-12-15T11:44:15.480297",
+    "session": "10-39-06-538cc19c"
+  },
+  {
+    "text": "Are you aware of agentnet? How does that work in terms of agent IDs? ultrathink",
+    "timestamp": "2025-12-15T10:05:21.679362",
+    "session": "09-44-56-7f5d9f72"
+  },
+  {
+    "text": "I think I do want agent hex IDs in git so that we can map git to logs... does that make sense? or..? ultrathink",
+    "timestamp": "2025-12-15T10:34:47.269528",
+    "session": "09-44-56-7f5d9f72"
+  },
+  {
+    "text": "I love the above observations. Can you please write a journal entry that expands on the above? ultrathink",
+    "timestamp": "2025-12-15T10:08:54.370185",
+    "session": "09-47-40-298311d7"
+  },
+  {
+    "text": "How does this work with agentnet? ultrathink",
+    "timestamp": "2025-12-15T10:47:37.704725",
+    "session": "09-47-40-298311d7"
+  },
+  {
+    "text": "Are you aware that each plugin should have a flagship plugin persona agent? ultrathink",
+    "timestamp": "2025-12-15T09:57:00.775537",
+    "session": "09-43-59-0a8bf3f1"
+  },
+  {
+    "text": "I just installed 9 plugins that are newly available from the claude official plugins, do you see those?",
+    "timestamp": "2025-12-17T09:24:45.901552",
+    "session": "09-24-21-eee074d5"
+  },
+  {
+    "text": "Can you explain each of these 10 plugins in detail?",
+    "timestamp": "2025-12-17T09:27:27.977086",
+    "session": "09-24-21-eee074d5"
+  },
+  {
+    "text": "Can you make the oneline summaries in the statusline white and bold? Can you also make the agent name in the statusline bold and can you make the last subdirectory in the path bold and can you make the branch name bold? ultrathink",
+    "timestamp": "2025-12-17T14:15:20.177078",
+    "session": "12-13-47-d5aada0a"
+  },
+  {
+    "text": "/feature-dev:feature-dev \u00a0I'm looking at the log markdown files they are so cool. I'm wondering if we can build a slash command in our logging plugin that opens the log directory in obsidian as a vault? ultrathink",
+    "timestamp": "2025-12-17T11:23:21.982805",
+    "session": "11-01-51-e9f9a384"
+  },
+  {
+    "text": "Why is agent renaming not working for the statusline right now? ultrathink",
+    "timestamp": "2025-12-17T20:09:57.707197",
+    "session": "20-09-25-85279a1f"
+  },
+  {
+    "text": "Can you briefly explain why we have 19000+ unstaged additions? I thought this plugin was working nicely earlier in the day, but it seems to have generally stopped working, or was it only working for certain agents or something? Can you investigate? ultrathink",
+    "timestamp": "2025-12-17T18:35:27.287752",
+    "session": "18-28-47-39d15364"
+  },
+  {
+    "text": "How do I interact with it?",
+    "timestamp": "2025-12-17T15:43:55.989036",
+    "session": "13-30-26-3e17a917"
+  },
+  {
+    "text": "OK it seemed to work! Can you please write a journal entry reflecting on our work today?",
+    "timestamp": "2025-12-17T13:00:15.032959",
+    "session": "12-41-59-84093758"
+  },
+  {
+    "text": "What is the command doing? Is it tracking all the obsidian logs or something? Also it doesn't seem to currently open with the logging directory visible in the graph view. ultrathink",
+    "timestamp": "2025-12-17T13:11:09.301932",
+    "session": "12-41-59-84093758"
+  },
+  {
+    "text": "What is the bash command doing with logging when I run that command? What's it doing?",
+    "timestamp": "2025-12-17T13:36:49.912882",
+    "session": "12-41-59-84093758"
+  },
+  {
+    "text": "Can't you look in the .obsidian/ folder? Where is it?",
+    "timestamp": "2025-12-17T17:40:43.580971",
+    "session": "12-41-59-84093758"
+  },
+  {
+    "text": "Why are autocommit commands not showing up in this claude instance?",
+    "timestamp": "2025-12-17T15:54:22.939987",
+    "session": "15-53-36-4f809400"
+  },
+  {
+    "text": "Want to use the autocommit plugin to get our working directory up to a clean state so we can observe if autocommit hooks are working in general? ultrathink",
+    "timestamp": "2025-12-17T20:22:25.060177",
+    "session": "15-53-36-4f809400"
+  },
+  {
+    "text": "OK how is the plugin working out so far? ultrathink",
+    "timestamp": "2025-12-17T13:17:59.908844",
+    "session": "12-42-25-e3079ff0"
+  },
+  {
+    "text": "OK interesting. Can you journal about everything we worked on today? Do you see the journal plugin? ultrathink",
+    "timestamp": "2025-12-13T15:04:26.484052",
+    "session": "14-24-24-538cc19c"
+  },
+  {
+    "text": "Can you create an engineering subagent in the plugin that is responsible for developing and maintaining the application on behalf of all the agents? ultrathink",
+    "timestamp": "2025-12-13T17:22:46.983913",
+    "session": "15-18-40-05038dd8"
+  },
+  {
+    "text": "What subagents do you have available?",
+    "timestamp": "2025-12-13T14:53:00.895990",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Are there agents from the awareness plugin? Can we namespace subagents according to their plugin?",
+    "timestamp": "2025-12-13T14:53:41.680607",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Can you make a command in the awareness plugin that invokes that agent? ultrathink",
+    "timestamp": "2025-12-13T15:13:43.090548",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "It's working now. Can you explain in simple terms what's happening?",
+    "timestamp": "2025-12-13T15:19:02.924212",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Is there a logging persona subagent in the logging plugin? ultrathink",
+    "timestamp": "2025-12-13T16:10:45.592178",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Did you review the journal entires that cover the creation of the archivist and librarian?",
+    "timestamp": "2025-12-13T16:22:46.396163",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Agents have been busy at work? Do you see updates?",
+    "timestamp": "2025-12-13T17:31:58.604249",
+    "session": "14-52-52-298311d7"
+  },
+  {
+    "text": "Is the agent architect sufficiently self reflective such that they will learn and track and participate in what is unfolding here and offer their support to the best of their ability while maintaining their core identity and integrity? ultrathink with awareness.",
+    "timestamp": "2025-12-13T14:49:55.402703",
+    "session": "14-01-39-d49e6b0a"
+  },
+  {
+    "text": "Can you journal about everythin we worked on today using the journal plugin? ultrathink",
+    "timestamp": "2025-12-13T15:05:02.291199",
+    "session": "14-01-39-d49e6b0a"
+  },
+  {
+    "text": "Which agent was working on the temporal structure of the journal knowledge graph wiki? I want to test that out in obsidian now. ultrathink",
+    "timestamp": "2025-12-13T15:34:11.526883",
+    "session": "14-01-39-d49e6b0a"
+  },
+  {
+    "text": "OK how are we doing on the overall arch of building our video and audio transcribing plugin? ultrathink",
+    "timestamp": "2025-12-18T07:52:14.075930",
+    "session": "07-52-14-18b9413c"
+  },
+  {
+    "text": "Is this over-engineered? Can you use the feature dev plugin code review agent to see if the whole system can be made more simpler and more reliable and maintainable? ultrathink",
+    "timestamp": "2025-12-18T07:58:22.846116",
+    "session": "07-58-22-85279a1f"
+  },
+  {
+    "text": "OK can you help me improve the quality? First, are you able to build a dataset based off logs? Are you able to see every session that's been named, what the user submit prompt was that got that agent named, what name it received? ultrathink",
+    "timestamp": "2025-12-18T09:20:42.356643",
+    "session": "07-58-22-85279a1f"
+  },
+  {
+    "text": "I had an agent working on the statusline but they froze. Do you see how things were going?",
+    "timestamp": "2025-12-18T09:50:42.645061",
+    "session": "09-50-19-a1c04f9d"
+  },
+  {
+    "text": "In the journal entries, can you remove all the connections from journal entries to month files and year files? So that journal entries just link to days? Can you change every journal file in that way and change the process for generating journal files so it maintains that way? ultrathink",
+    "timestamp": "2025-12-18T08:43:33.010282",
+    "session": "07-54-03-3e17a917"
+  },
+  {
+    "text": "OK thanks. What does the 15th connect to the 13th?",
+    "timestamp": "2025-12-18T08:46:33.344529",
+    "session": "07-54-03-3e17a917"
+  },
+  {
+    "text": "Can you look into the autocommit plugin and see how autocommiting works and see if there is a command in that plugin that can trigger the committing process in case it doesn't get triggered automatically? Consider the implications and design decisions. ultrathink",
+    "timestamp": "2025-12-18T08:51:51.772106",
+    "session": "07-54-03-3e17a917"
+  },
+  {
+    "text": "Testing logging can you spin up a quick subagent?",
+    "timestamp": "2025-12-08T17:33:22.570110",
+    "session": "17-33-09-c48f5bed"
+  },
+  {
+    "text": "Can you do an example where a subagent uses a tool?",
+    "timestamp": "2025-12-08T17:49:55.948192",
+    "session": "17-48-29-0143495c"
+  },
+  {
+    "text": "Can you improve your skill to be able to look ahead to next week? ultrathink",
+    "timestamp": "2025-12-11T16:19:37.660392",
+    "session": "15-31-44-0d56ffcb"
+  },
+  {
+    "text": "What plugins are you using?",
+    "timestamp": "2025-12-11T19:15:51.880821",
+    "session": "19-15-45-5fa98c28"
+  },
+  {
+    "text": "OK can you read the planning documents in this repository and learn about this repository in general and then spin up three parallel subagents to study prerequisites for properly implementing the backlog.md plugin? ultrathink",
+    "timestamp": "2025-12-11T19:18:12.588276",
+    "session": "19-15-45-5fa98c28"
+  },
+  {
+    "text": "Why are there only two plugins available on this marketplace?",
+    "timestamp": "2025-12-11T18:03:51.784122",
+    "session": "18-02-59-42b02dc6"
+  },
+  {
+    "text": "Can you consult with with awareness plugin to get to the bottom of this? ultrathink",
+    "timestamp": "2025-12-11T18:05:02.675230",
+    "session": "18-02-59-42b02dc6"
+  },
+  {
+    "text": "What skills do you have?",
+    "timestamp": "2025-12-12T16:23:17.918869",
+    "session": "16-23-14-7b5451dc"
+  },
+  {
+    "text": "What's the agent finding summary?",
+    "timestamp": "2025-12-12T09:38:09.009894",
+    "session": "09-38-09-5fa98c28"
+  },
+  {
+    "text": "Are you currently using the backlog?",
+    "timestamp": "2025-12-12T09:40:48.809648",
+    "session": "09-38-09-5fa98c28"
+  },
+  {
+    "text": "What skills do you have access to?",
+    "timestamp": "2025-12-12T16:30:00.540228",
+    "session": "16-29-53-7b98de99"
+  },
+  {
+    "text": "How is the backlog plugin? ultrathink",
+    "timestamp": "2025-12-12T09:37:18.500019",
+    "session": "09-36-27-f25ad4cb"
+  },
+  {
+    "text": "Does the plugin come with the backlog mcp?",
+    "timestamp": "2025-12-12T09:38:55.575447",
+    "session": "09-36-27-f25ad4cb"
+  },
+  {
+    "text": "I don't understand why we don't include the mcp in the plugin. Can you use your claude skills to get to the bottom of this? ultrathink",
+    "timestamp": "2025-12-12T09:40:24.170498",
+    "session": "09-36-27-f25ad4cb"
+  },
+  {
+    "text": "But I see that's already in .mcp.json in the backlog plugin, why don't you have access to that mcp now?",
+    "timestamp": "2025-12-12T09:42:45.192155",
+    "session": "09-36-27-f25ad4cb"
+  },
+  {
+    "text": "Do you have skills from the awareness plugin?",
+    "timestamp": "2025-12-12T15:18:27.796058",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "Are there knowledge graph skills?",
+    "timestamp": "2025-12-12T15:19:25.698945",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "Is there a knowledge graph plugin?",
+    "timestamp": "2025-12-12T15:20:07.905201",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "What is truncating the skills list?",
+    "timestamp": "2025-12-12T15:25:12.403084",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "Why are our skills taking over 15000 characters?",
+    "timestamp": "2025-12-12T15:50:27.081189",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "Can you create a skill in awareness for updating plugins? If updating plugins can be done inline by claude as I am developing that would probably be pretty great. ultrathink",
+    "timestamp": "2025-12-12T16:28:14.887898",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "OK can you explore any documentation we have in this repo like claude.md or readmes or our plugin definitions in which we should ensure that this pattern is understood and utlized? ultrathink",
+    "timestamp": "2025-12-12T16:39:07.795192",
+    "session": "15-01-09-0a8bf3f1"
+  },
+  {
+    "text": "Why do I see '2 plugins had errors'?",
+    "timestamp": "2025-12-12T09:54:40.319849",
+    "session": "09-54-22-b427f9c1"
+  },
+  {
+    "text": "Can you reflect deeper given the nature of this project using the awareness skill?",
+    "timestamp": "2025-12-12T15:10:50.761178",
+    "session": "14-59-52-a99edf63"
+  },
+  {
+    "text": "Does each claude agent have a unique ID?",
+    "timestamp": "2025-12-12T16:36:10.729659",
+    "session": "16-35-45-7f5d9f72"
+  },
+  {
+    "text": "Even subagents? Can you explore the logs a little bit to garner insights?",
+    "timestamp": "2025-12-12T16:37:36.794039",
+    "session": "16-35-45-7f5d9f72"
+  },
+  {
+    "text": "What does the awareness plugin do?",
+    "timestamp": "2025-12-12T15:00:54.819930",
+    "session": "15-00-18-e78df85e"
+  },
+  {
+    "text": "As you develop the above can you please continuously develop a skill that gets better and better at managing and understanding that infrastructure with respect to awareness? ultrathink",
+    "timestamp": "2025-12-12T15:14:10.351850",
+    "session": "15-00-18-e78df85e"
+  },
+  {
+    "text": "Let's consider for this first round of experimentation let's only ingest user submissions and agent responses. Do not truncate any data. Can you run an experiment on the first (oldest) session log in this repository? ultrathink",
+    "timestamp": "2025-12-12T16:11:07.064657",
+    "session": "15-00-18-e78df85e"
+  }
+]

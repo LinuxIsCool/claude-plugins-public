@@ -1,0 +1,417 @@
+{
+  "query_count": 40,
+  "vector": {
+    "mrr": 0.18208333333333332,
+    "p5": 0.13500000000000004
+  },
+  "hybrid": {
+    "mrr": 0.17083333333333334,
+    "p5": 0.06999999999999999
+  },
+  "detailed": {
+    "vector": [
+      {
+        "query": "Where is the vis?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK. Is this work owned by a particular agent? Are we developing particular skills around our practices that we are developing here? ultrathink with awareness.",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What is the registry?",
+        "mrr": 1.0,
+        "p5": 0.8
+      },
+      {
+        "query": "Instances should not update their own summaries, it should be done automatically using hooks. Can you do this using headless claude?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK awesome. I appreciate that. What's the system using now? Headless claude or API? And when does it get updated? For what hooks is it updated?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Wait... did you delete the registry file?!",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Did the registration hook fire? Why did this agent become named Opus?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "No it should be using headless claude to use haiku to generate a name based off the first user submit prompt in the thread. Was I duped by a previous agent who said they implemented this?",
+        "mrr": 0.2,
+        "p5": 0.2
+      },
+      {
+        "query": "Can you change the default agent name from the model (like Opus) to Claude?",
+        "mrr": 0.3333333333333333,
+        "p5": 0.6
+      },
+      {
+        "query": "I'm wondering if the temporal timestamps plugin should show date and time instead of just time?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can claude code plugins contain output styles?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can plugins distribute general folders? Is there a workaround there?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Where is it documented?",
+        "mrr": 0.5,
+        "p5": 0.6
+      },
+      {
+        "query": "What does this imply for our repository? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How can I see the entire network of all my journal files? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Are you aware of agentnet? How does that work in terms of agent IDs? ultrathink",
+        "mrr": 1.0,
+        "p5": 1.0
+      },
+      {
+        "query": "I think I do want agent hex IDs in git so that we can map git to logs... does that make sense? or..? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "I love the above observations. Can you please write a journal entry that expands on the above? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How does this work with agentnet? ultrathink",
+        "mrr": 0.25,
+        "p5": 0.2
+      },
+      {
+        "query": "Are you aware that each plugin should have a flagship plugin persona agent? ultrathink",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "I just installed 9 plugins that are newly available from the claude official plugins, do you see those?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you explain each of these 10 plugins in detail?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you make the oneline summaries in the statusline white and bold? Can you also make the agent name in the statusline bold and can you make the last subdirectory in the path bold and can you make the branch name bold? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "/feature-dev:feature-dev \u00a0I'm looking at the log markdown files they are so cool. I'm wondering if we can build a slash command in our logging plugin that opens the log directory in obsidian as a vault? ultrathink",
+        "mrr": 0.5,
+        "p5": 0.2
+      },
+      {
+        "query": "Why is agent renaming not working for the statusline right now? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you briefly explain why we have 19000+ unstaged additions? I thought this plugin was working nicely earlier in the day, but it seems to have generally stopped working, or was it only working for certain agents or something? Can you investigate? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How do I interact with it?",
+        "mrr": 0.25,
+        "p5": 0.2
+      },
+      {
+        "query": "OK it seemed to work! Can you please write a journal entry reflecting on our work today?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What is the command doing? Is it tracking all the obsidian logs or something? Also it doesn't seem to currently open with the logging directory visible in the graph view. ultrathink",
+        "mrr": 0.5,
+        "p5": 0.2
+      },
+      {
+        "query": "What is the bash command doing with logging when I run that command? What's it doing?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can't you look in the .obsidian/ folder? Where is it?",
+        "mrr": 0.5,
+        "p5": 0.4
+      },
+      {
+        "query": "Why are autocommit commands not showing up in this claude instance?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Want to use the autocommit plugin to get our working directory up to a clean state so we can observe if autocommit hooks are working in general? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK how is the plugin working out so far? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK interesting. Can you journal about everything we worked on today? Do you see the journal plugin? ultrathink",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "Can you create an engineering subagent in the plugin that is responsible for developing and maintaining the application on behalf of all the agents? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What subagents do you have available?",
+        "mrr": 0.25,
+        "p5": 0.2
+      },
+      {
+        "query": "Are there agents from the awareness plugin? Can we namespace subagents according to their plugin?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you make a command in the awareness plugin that invokes that agent? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "It's working now. Can you explain in simple terms what's happening?",
+        "mrr": 0.0,
+        "p5": 0.0
+      }
+    ],
+    "hybrid": [
+      {
+        "query": "Where is the vis?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK. Is this work owned by a particular agent? Are we developing particular skills around our practices that we are developing here? ultrathink with awareness.",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What is the registry?",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "Instances should not update their own summaries, it should be done automatically using hooks. Can you do this using headless claude?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK awesome. I appreciate that. What's the system using now? Headless claude or API? And when does it get updated? For what hooks is it updated?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Wait... did you delete the registry file?!",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Did the registration hook fire? Why did this agent become named Opus?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "No it should be using headless claude to use haiku to generate a name based off the first user submit prompt in the thread. Was I duped by a previous agent who said they implemented this?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you change the default agent name from the model (like Opus) to Claude?",
+        "mrr": 1.0,
+        "p5": 0.6
+      },
+      {
+        "query": "I'm wondering if the temporal timestamps plugin should show date and time instead of just time?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can claude code plugins contain output styles?",
+        "mrr": 1.0,
+        "p5": 0.2
+      },
+      {
+        "query": "Can plugins distribute general folders? Is there a workaround there?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Where is it documented?",
+        "mrr": 0.3333333333333333,
+        "p5": 0.2
+      },
+      {
+        "query": "What does this imply for our repository? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How can I see the entire network of all my journal files? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Are you aware of agentnet? How does that work in terms of agent IDs? ultrathink",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "I think I do want agent hex IDs in git so that we can map git to logs... does that make sense? or..? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "I love the above observations. Can you please write a journal entry that expands on the above? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How does this work with agentnet? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Are you aware that each plugin should have a flagship plugin persona agent? ultrathink",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "I just installed 9 plugins that are newly available from the claude official plugins, do you see those?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you explain each of these 10 plugins in detail?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you make the oneline summaries in the statusline white and bold? Can you also make the agent name in the statusline bold and can you make the last subdirectory in the path bold and can you make the branch name bold? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "/feature-dev:feature-dev \u00a0I'm looking at the log markdown files they are so cool. I'm wondering if we can build a slash command in our logging plugin that opens the log directory in obsidian as a vault? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Why is agent renaming not working for the statusline right now? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you briefly explain why we have 19000+ unstaged additions? I thought this plugin was working nicely earlier in the day, but it seems to have generally stopped working, or was it only working for certain agents or something? Can you investigate? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "How do I interact with it?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK it seemed to work! Can you please write a journal entry reflecting on our work today?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What is the command doing? Is it tracking all the obsidian logs or something? Also it doesn't seem to currently open with the logging directory visible in the graph view. ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What is the bash command doing with logging when I run that command? What's it doing?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can't you look in the .obsidian/ folder? Where is it?",
+        "mrr": 0.5,
+        "p5": 0.2
+      },
+      {
+        "query": "Why are autocommit commands not showing up in this claude instance?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Want to use the autocommit plugin to get our working directory up to a clean state so we can observe if autocommit hooks are working in general? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK how is the plugin working out so far? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "OK interesting. Can you journal about everything we worked on today? Do you see the journal plugin? ultrathink",
+        "mrr": 1.0,
+        "p5": 0.4
+      },
+      {
+        "query": "Can you create an engineering subagent in the plugin that is responsible for developing and maintaining the application on behalf of all the agents? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "What subagents do you have available?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Are there agents from the awareness plugin? Can we namespace subagents according to their plugin?",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "Can you make a command in the awareness plugin that invokes that agent? ultrathink",
+        "mrr": 0.0,
+        "p5": 0.0
+      },
+      {
+        "query": "It's working now. Can you explain in simple terms what's happening?",
+        "mrr": 0.0,
+        "p5": 0.0
+      }
+    ]
+  }
+}

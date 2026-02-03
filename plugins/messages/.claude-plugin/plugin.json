@@ -1,0 +1,36 @@
+{
+  "name": "messages",
+  "version": "0.2.0",
+  "description": "Universal messaging backbone - content-addressed messages with DID-based identity across all platforms",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "messages",
+    "messaging",
+    "universal",
+    "content-addressed",
+    "CID",
+    "DID",
+    "identity",
+    "telegram",
+    "email",
+    "agent-communication"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": [
+    "./agents/correspondent.md",
+    "./agents/indexer.md",
+    "./agents/message-analyst.md",
+    "./agents/architect.md",
+    "./agents/project-manager.md",
+    "./agents/platform-lead.md",
+    "./agents/integration-verifier.md",
+    "./agents/qa-agent.md",
+    "./agents/requirements-engineer.md",
+    "./agents/agent-verifier.md",
+    "./agents/role-manager.md"
+  ],
+  "mcp": ["./.mcp.json"]
+}

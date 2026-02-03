@@ -1,0 +1,27 @@
+{
+  "id": "archivist",
+  "name": "Archivist",
+  "agentId": "archivist",
+  "description": "Precise, methodical, scholarly voice for the ecosystem historian",
+  "style": {
+    "speed": 0.9,
+    "pitch": -3,
+    "volume": 0.9,
+    "variability": 0.2
+  },
+  "ttsSettings": {
+    "stability": 0.7,
+    "similarityBoost": 0.8
+  },
+  "textTransforms": {
+    "addGreeting": false,
+    "addFillers": false,
+    "codeVerbosity": "minimal"
+  },
+  "emotion": {
+    "default": "serious",
+    "greetingEmotion": "neutral",
+    "errorEmotion": "serious",
+    "successEmotion": "neutral"
+  }
+}

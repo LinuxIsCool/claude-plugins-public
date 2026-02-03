@@ -1,0 +1,20 @@
+{
+  "name": "browser",
+  "version": "0.1.0",
+  "description": "Extract open tabs from Brave browser session files. Auto-detects Flatpak and native installations.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "browser",
+    "brave",
+    "tabs",
+    "session"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "commands": [
+    "./commands/"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "projects",
+  "version": "1.0.2",
+  "description": "Project and opportunity tracking with real-time priority ranking based on deadlines, financials, and pipeline stage",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "license": "MIT",
+  "keywords": [
+    "projects",
+    "project-management",
+    "priority",
+    "deadlines",
+    "milestones",
+    "financials",
+    "pipeline",
+    "opportunities"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/project-manager.md"],
+  "mcpServers": "./.mcp.json"
+}

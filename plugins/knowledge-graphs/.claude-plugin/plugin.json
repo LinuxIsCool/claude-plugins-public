@@ -1,0 +1,11 @@
+{
+  "name": "knowledge-graphs",
+  "version": "0.1.0",
+  "description": "Master plugin for knowledge graph technologies. Covers graph databases (Dgraph, Neo4j), temporal KGs (Graphiti, TKGC), AI memory systems (Cognee, Mem0), RAG enhancement (LightRAG, KAG), knowledge management (Logseq, Trilium), codebase analysis (Potpie), and protocol standards (SPARQL, KOI-Net).",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["knowledge-graph", "graph-database", "temporal-kg", "rag", "sparql", "neo4j", "memory", "reasoning"],
+  "skills": ["./skills/"],
+  "agents": ["./agents/weaver.md"]
+}

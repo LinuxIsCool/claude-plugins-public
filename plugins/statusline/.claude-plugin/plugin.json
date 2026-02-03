@@ -1,0 +1,32 @@
+{
+  "name": "statusline",
+  "version": "0.4.0",
+  "description": "Instance identity and statusline management for multi-Claude coordination",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "statusline",
+    "identity",
+    "instances",
+    "multi-agent",
+    "coordination",
+    "tracking"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"}]}],
+    "UserPromptSubmit": [{"hooks": [
+      {"type": "command", "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/user-prompt-submit.sh"},
+      {"type": "command", "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/auto-identity-wrapper.sh"}
+    ]}],
+    "Stop": [{"hooks": [
+      {"type": "command", "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/auto-identity-wrapper.sh"}
+    ]}]
+  }
+}

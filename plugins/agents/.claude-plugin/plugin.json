@@ -1,0 +1,11 @@
+{
+  "name": "agents",
+  "version": "0.1.0",
+  "description": "Master plugin for building AI agents across frameworks. Provides skills for each agent architecture in resources/agents/, covering multi-agent orchestration, memory systems, tool integration, protocol standards, and production deployment patterns.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["agents", "multi-agent", "orchestration", "memory", "tools", "protocols", "a2a", "mcp"],
+  "skills": ["./skills/"],
+  "agents": ["./agents/orchestrator.md"]
+}

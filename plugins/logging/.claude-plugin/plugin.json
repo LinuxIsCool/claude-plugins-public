@@ -1,0 +1,24 @@
+{
+  "name": "logging",
+  "version": "0.4.0",
+  "description": "Full-fidelity session logging with JSONL storage, Markdown reports, and advanced conversation search (BM25, semantic, pairs, highlighting)",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["logging", "observability", "prompts", "search", "history"],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/archivist.md"],
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e SessionStart"}]}],
+    "SessionEnd": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e SessionEnd"}]}],
+    "UserPromptSubmit": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e UserPromptSubmit"}]}],
+    "PreToolUse": [{"matcher": "", "hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e PreToolUse"}]}],
+    "PostToolUse": [{"matcher": "", "hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e PostToolUse"}]}],
+    "PermissionRequest": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e PermissionRequest"}]}],
+    "Notification": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e Notification"}]}],
+    "PreCompact": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e PreCompact"}]}],
+    "Stop": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e Stop"}]}],
+    "SubagentStop": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/log_event.py -e SubagentStop"}]}]
+  }
+}

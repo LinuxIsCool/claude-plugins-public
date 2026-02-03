@@ -1,0 +1,297 @@
+{
+  // ============================================================================
+  // Entity Snippets
+  // ============================================================================
+  "KG Entity Interface": {
+    "prefix": "kgentity",
+    "body": [
+      "/**",
+      " * ${1:EntityName} entity.",
+      " */",
+      "export interface ${1:EntityName} extends BaseNode {",
+      "  readonly type: \"${2:entity_type}\";",
+      "  /** ${3:Description} */",
+      "  readonly ${4:propertyName}: ${5:string};",
+      "  $0",
+      "}"
+    ],
+    "description": "Create a new KG entity interface"
+  },
+  "KG Entity Type Guard": {
+    "prefix": "kgguard",
+    "body": [
+      "/**",
+      " * Type guard for ${1:EntityName} entities.",
+      " */",
+      "export function is${1:EntityName}(entity: Entity): entity is ${1:EntityName} {",
+      "  return entity.type === \"${2:entity_type}\";",
+      "}"
+    ],
+    "description": "Create a type guard for an entity"
+  },
+  "KG Relationship Interface": {
+    "prefix": "kgrel",
+    "body": [
+      "/**",
+      " * ${1:RelName} relationship (${2:Source} -> ${3:Target}).",
+      " */",
+      "export interface ${1:RelName}Relationship extends BaseRelationship {",
+      "  readonly type: \"${4:rel_type}\";",
+      "  readonly properties: {",
+      "    readonly ${5:property}: ${6:string};",
+      "    $0",
+      "  };",
+      "}"
+    ],
+    "description": "Create a new KG relationship interface"
+  },
+
+  // ============================================================================
+  // Query Snippets
+  // ============================================================================
+  "Cypher Query": {
+    "prefix": "cypher",
+    "body": [
+      "const ${1:queryName} = `",
+      "  MATCH (${2:n}:${3:EntityType})",
+      "  WHERE ${2:n}.${4:property} ${5:=} $${6:param}",
+      "  RETURN ${2:n}",
+      "  ORDER BY ${2:n}.${7:orderBy} DESC",
+      "  LIMIT $limit",
+      "`;"
+    ],
+    "description": "Create a Cypher query"
+  },
+  "Query Definition": {
+    "prefix": "kgquery",
+    "body": [
+      "const ${1:queryName}: CypherQuery<{ ${2:paramName}: ${3:string} }> = {",
+      "  id: \"${4:query-id}\" as QueryId,",
+      "  name: \"${5:Query Name}\",",
+      "  description: \"${6:Description}\",",
+      "  language: \"cypher\",",
+      "  query: `",
+      "    MATCH (n:${7:EntityType})",
+      "    WHERE n.${8:property} = $${2:paramName}",
+      "    RETURN n",
+      "  `,",
+      "  parameters: {",
+      "    parameters: {",
+      "      ${2:paramName}: {",
+      "        name: \"${2:paramName}\",",
+      "        type: \"string\",",
+      "        description: \"${9:Parameter description}\",",
+      "      },",
+      "    },",
+      "    required: [\"${2:paramName}\"],",
+      "  },",
+      "  metadata: {",
+      "    createdAt: createTimestamp(),",
+      "    updatedAt: createTimestamp(),",
+      "    version: \"1.0.0\",",
+      "    tags: [\"${10:tag}\"],",
+      "    category: \"exploration\",",
+      "    complexity: \"simple\",",
+      "  },",
+      "};"
+    ],
+    "description": "Create a full query definition"
+  },
+
+  // ============================================================================
+  // Test Snippets
+  // ============================================================================
+  "Vitest Test Suite": {
+    "prefix": "vtest",
+    "body": [
+      "import { describe, it, expect, beforeEach, afterEach } from \"vitest\";",
+      "",
+      "describe(\"${1:ComponentName}\", () => {",
+      "  beforeEach(() => {",
+      "    $2",
+      "  });",
+      "",
+      "  afterEach(() => {",
+      "    $3",
+      "  });",
+      "",
+      "  it(\"${4:should do something}\", () => {",
+      "    // Arrange",
+      "    $5",
+      "",
+      "    // Act",
+      "    $6",
+      "",
+      "    // Assert",
+      "    expect($7).toBe($8);",
+      "  });",
+      "});"
+    ],
+    "description": "Create a Vitest test suite"
+  },
+  "Vitest Test Case": {
+    "prefix": "vit",
+    "body": [
+      "it(\"${1:should do something}\", () => {",
+      "  // Arrange",
+      "  ${2:const input = null;}",
+      "",
+      "  // Act",
+      "  ${3:const result = fn(input);}",
+      "",
+      "  // Assert",
+      "  expect(${4:result}).toBe(${5:expected});",
+      "});"
+    ],
+    "description": "Create a Vitest test case"
+  },
+  "Vitest Async Test": {
+    "prefix": "vita",
+    "body": [
+      "it(\"${1:should do something async}\", async () => {",
+      "  // Arrange",
+      "  ${2:const input = null;}",
+      "",
+      "  // Act",
+      "  ${3:const result = await fn(input);}",
+      "",
+      "  // Assert",
+      "  expect(${4:result}).toBe(${5:expected});",
+      "});"
+    ],
+    "description": "Create an async Vitest test case"
+  },
+
+  // ============================================================================
+  // React Component Snippets
+  // ============================================================================
+  "React Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "interface ${1:ComponentName}Props {",
+      "  ${2:propName}: ${3:string};",
+      "}",
+      "",
+      "export function ${1:ComponentName}({ ${2:propName} }: ${1:ComponentName}Props) {",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Create a React functional component with TypeScript"
+  },
+  "React Server Component": {
+    "prefix": "rsc",
+    "body": [
+      "interface ${1:ComponentName}Props {",
+      "  ${2:propName}: ${3:string};",
+      "}",
+      "",
+      "export async function ${1:ComponentName}({ ${2:propName} }: ${1:ComponentName}Props) {",
+      "  const data = await ${4:fetchData}();",
+      "",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Create a React Server Component"
+  },
+  "React Custom Hook": {
+    "prefix": "rhook",
+    "body": [
+      "import { useState, useEffect } from \"react\";",
+      "",
+      "export function use${1:HookName}(${2:param}: ${3:string}) {",
+      "  const [${4:state}, set${4/(.*)/${1:/capitalize}/}] = useState<${5:string} | null>(null);",
+      "",
+      "  useEffect(() => {",
+      "    $0",
+      "  }, [${2:param}]);",
+      "",
+      "  return ${4:state};",
+      "}"
+    ],
+    "description": "Create a custom React hook"
+  },
+
+  // ============================================================================
+  // Utility Snippets
+  // ============================================================================
+  "Console Log with Label": {
+    "prefix": "clog",
+    "body": ["console.log(\"${1:label}:\", ${2:value});"],
+    "description": "Console log with label"
+  },
+  "Console Table": {
+    "prefix": "ctable",
+    "body": ["console.table(${1:data});"],
+    "description": "Console table"
+  },
+  "Async Function": {
+    "prefix": "afn",
+    "body": [
+      "async function ${1:functionName}(${2:params}): Promise<${3:ReturnType}> {",
+      "  $0",
+      "}"
+    ],
+    "description": "Create an async function"
+  },
+  "Try Catch": {
+    "prefix": "tc",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (error) {",
+      "  console.error(\"Error:\", error);",
+      "  $0",
+      "}"
+    ],
+    "description": "Try catch block"
+  },
+  "Result Type Success": {
+    "prefix": "resok",
+    "body": ["return { success: true, value: ${1:value} };"],
+    "description": "Return success result"
+  },
+  "Result Type Error": {
+    "prefix": "reserr",
+    "body": ["return { success: false, error: ${1:error} };"],
+    "description": "Return error result"
+  },
+
+  // ============================================================================
+  // Documentation Snippets
+  // ============================================================================
+  "JSDoc Function": {
+    "prefix": "jsdoc",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " *",
+      " * @param ${2:param} - ${3:Param description}",
+      " * @returns ${4:Return description}",
+      " *",
+      " * @example",
+      " * ```typescript",
+      " * ${5:example}",
+      " * ```",
+      " */"
+    ],
+    "description": "JSDoc comment block"
+  },
+  "File Header": {
+    "prefix": "header",
+    "body": [
+      "/**",
+      " * @fileoverview ${1:Description}",
+      " * @module ${2:module-name}",
+      " */"
+    ],
+    "description": "File header comment"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@claude-plugins/transcripts",
+  "version": "0.1.0",
+  "description": "Transcript management plugin with voice fingerprinting, speaker database, and knowledge extraction",
+  "type": "module",
+  "main": "dist/server/index.js",
+  "types": "dist/server/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server/index.js",
+    "test": "vitest",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.4",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "agents",
+    "commands",
+    ".claude-plugin"
+  ],
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "transcripts",
+    "speech-to-text",
+    "voice-fingerprinting",
+    "speaker-recognition",
+    "whisper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linuxiscool/claude-plugins"
+  },
+  "author": "Claude Plugins Ecosystem",
+  "license": "MIT"
+}

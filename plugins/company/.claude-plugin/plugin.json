@@ -1,0 +1,36 @@
+{
+  "name": "company",
+  "version": "0.2.0",
+  "description": "Personal board of advisors for institutional design, business strategy, legal, and finance. Canadian-first (BC-focused) with full CPA/CFA toolkit. Includes board-mentor output_style for always-on advisory.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "institutional-design",
+    "corporate",
+    "legal",
+    "finance",
+    "taxation",
+    "cpa",
+    "cfa",
+    "canadian",
+    "bc",
+    "advisor",
+    "mentor",
+    "output-style"
+  ],
+  "skills": ["./skills/"],
+  "agents": [
+    "./agents/board-mentor.md",
+    "./agents/ceo.md",
+    "./agents/cfo.md",
+    "./agents/cto.md",
+    "./agents/chief-of-staff.md"
+  ],
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "script": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.py"
+    }
+  ]
+}

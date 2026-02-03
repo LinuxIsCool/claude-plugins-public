@@ -1,0 +1,16 @@
+{
+  "name": "voice",
+  "version": "0.1.0",
+  "description": "Voice input/output for Claude Code - TTS feedback on session events with agent-specific voices",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["voice", "speech", "tts", "audio", "accessibility"],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": [
+    "./agents/voice-conductor.md",
+    "./agents/voice-character-curator.md"
+  ],
+  "hooks": "./hooks/hooks.json"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "perf",
+  "version": "0.1.0",
+  "description": "Performance profiling and optimization for Claude Code. Analyzes hook timing, plugin cache health, and startup performance. On-demand profiling with zero runtime overhead.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "performance",
+    "profiling",
+    "optimization",
+    "timing",
+    "cache",
+    "hooks",
+    "startup"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/perf-analyst.md"]
+}

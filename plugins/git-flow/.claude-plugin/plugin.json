@@ -1,0 +1,46 @@
+{
+  "name": "git-flow",
+  "version": "0.1.0",
+  "description": "Git worktree-based workflow for per-session feature branches and PR automation",
+  "author": {
+    "name": "Claude Ecosystem"
+  },
+  "commands": ["../commands/"],
+  "agents": ["../agents/branch-manager.md"],
+  "skills": ["../skills/"],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/stop.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

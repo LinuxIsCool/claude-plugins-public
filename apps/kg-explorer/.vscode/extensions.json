@@ -1,0 +1,42 @@
+{
+  "recommendations": [
+    // TypeScript & JavaScript
+    "ms-vscode.vscode-typescript-next",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+
+    // React & Next.js
+    "dsznajder.es7-react-js-snippets",
+    "bradlc.vscode-tailwindcss",
+
+    // GraphQL
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax",
+
+    // Database & Graph
+    "neo4j.neo4j-vscode",
+    "mechatroner.rainbow-csv",
+
+    // Testing
+    "vitest.explorer",
+    "ms-playwright.playwright",
+
+    // Git & GitHub
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // Code Quality
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "gruntfuggly.todo-tree",
+
+    // Productivity
+    "christian-kohler.path-intellisense",
+    "aaron-bond.better-comments",
+    "wayou.vscode-todo-highlight",
+
+    // Formatting
+    "editorconfig.editorconfig"
+  ],
+  "unwantedRecommendations": []
+}

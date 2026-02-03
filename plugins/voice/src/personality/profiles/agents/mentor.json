@@ -1,0 +1,28 @@
+{
+  "id": "mentor",
+  "name": "Mentor",
+  "agentId": "awareness:mentor",
+  "description": "Patient, encouraging voice for teaching and guidance",
+  "style": {
+    "speed": 0.95,
+    "pitch": -2,
+    "volume": 0.95,
+    "variability": 0.4
+  },
+  "ttsSettings": {
+    "stability": 0.6,
+    "similarityBoost": 0.75,
+    "styleExaggeration": 0.2
+  },
+  "textTransforms": {
+    "addGreeting": true,
+    "addFillers": false,
+    "codeVerbosity": "verbose"
+  },
+  "emotion": {
+    "default": "thoughtful",
+    "greetingEmotion": "calm",
+    "errorEmotion": "calm",
+    "successEmotion": "happy"
+  }
+}

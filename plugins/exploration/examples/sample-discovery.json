@@ -1,0 +1,27 @@
+{
+  "circle": "network",
+  "summary": "Found FalkorDB container running with Redis protocol on port 6380",
+  "entities": [
+    {
+      "name": "FalkorDB",
+      "type": "container",
+      "properties": {
+        "port": 6380,
+        "protocol": "redis",
+        "image": "falkordb/falkordb"
+      }
+    },
+    {
+      "name": "exploration-graph",
+      "type": "database",
+      "properties": {
+        "backend": "FalkorDB",
+        "query_language": "OpenCypher"
+      }
+    }
+  ],
+  "questions": [
+    "How many nodes are currently in the exploration graph?",
+    "What other containers depend on FalkorDB?"
+  ]
+}

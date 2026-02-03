@@ -1,0 +1,11 @@
+{
+  "name": "llms",
+  "version": "0.1.0",
+  "description": "Master plugin for working with LLMs, embeddings, and AI frameworks. Provides skills for each embedding architecture in resources/embeddings/, embracing a learning journey through progressive mastery of vector databases, knowledge graphs, and LLM integration patterns.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["llms", "embeddings", "vectors", "knowledge-graphs", "rag", "agents", "learning"],
+  "skills": ["./skills/"],
+  "agents": ["./agents/modeler.md"]
+}

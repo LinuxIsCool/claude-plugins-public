@@ -1,0 +1,10 @@
+{
+  "name": "cards",
+  "version": "0.1.0",
+  "description": "Morphological data modeling plugin. Cards are universal data primitives that transform between representations: markdown, JSON, CSV, database records, graph nodes, messages, events.",
+  "author": "ygg",
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/morphologist.md"],
+  "hooks": []
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@claude-plugins/projects",
+  "version": "1.0.0",
+  "description": "Project and opportunity tracking with real-time priority ranking",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run src/mcp/server.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "gray-matter": "^4.0.3",
+    "nanoid": "^5.0.9",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

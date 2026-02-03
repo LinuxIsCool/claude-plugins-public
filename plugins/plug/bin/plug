@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+"""
+Plug - Declarative plugin manager for Claude Code.
+
+Usage:
+    plug init [--project]
+    plug sync [--dry-run] [--force] [--quiet] [--frozen]
+    plug update [<plugin>] [--all]
+    plug list [--skills] [--commands] [--agents]
+    plug status
+    plug doctor
+    plug lock
+
+Commands:
+    init      Create a new Plugfile
+    sync      Reconcile installed plugins with Plugfile
+    update    Update plugins to latest versions
+    list      List installed plugins
+    status    Show what sync would change
+    doctor    Diagnose common issues
+    lock      Regenerate lockfile from current state
+"""
+
+import sys
+import os
+
+# Add lib directory to path
+PLUG_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(PLUG_ROOT, 'lib'))
+
+from plug_core import main
+
+if __name__ == '__main__':
+    sys.exit(main())

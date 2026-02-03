@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Cache
+.cache/
+
+# Playwright browsers
+.browsers/
+
+# OS files
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+
+# Auto-synced Google Calendar events (user data, regenerated from API)
+schedule/blocks/gcal-*.md

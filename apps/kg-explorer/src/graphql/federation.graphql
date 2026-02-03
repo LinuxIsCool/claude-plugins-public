@@ -1,0 +1,612 @@
+# =============================================================================
+# Knowledge Graph Explorer - Federation Schema
+# =============================================================================
+#
+# Apollo Federation 2.0 schema definitions for composing multiple
+# knowledge graph services into a unified supergraph. Enables:
+#
+# - Graphiti subgraph (temporal KG, agent memory)
+# - LightRAG subgraph (RAG context, semantic search)
+# - Dgraph subgraph (native GraphQL, distributed storage)
+# - Custom domain subgraphs (codebase analysis, etc.)
+#
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Federation 2.0 Schema Extension
+# -----------------------------------------------------------------------------
+
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.5",
+        import: [
+          "@key",
+          "@shareable",
+          "@external",
+          "@requires",
+          "@provides",
+          "@extends",
+          "@override",
+          "@inaccessible",
+          "@tag",
+          "@composeDirective",
+          "@interfaceObject"
+        ])
+  @link(url: "https://specs.apollo.dev/policy/v0.1",
+        import: ["@policy", "@requiresScopes"])
+
+# -----------------------------------------------------------------------------
+# Federated Entity Definitions
+# -----------------------------------------------------------------------------
+
+"""
+Repository entity - federated across multiple subgraphs.
+Each subgraph contributes different aspects of repository data.
+"""
+type Repository @key(fields: "id") {
+  """Unique repository identifier"""
+  id: ID!
+
+  # Core fields (owned by this subgraph)
+  name: String!
+  fullName: String!
+  description: String
+  url: String!
+  stars: Int!
+  forks: Int!
+  primaryLanguage: String
+
+  # Temporal fields (from Graphiti subgraph)
+  validFrom: DateTime @external
+  validTo: DateTime @external
+  episodeHistory: [Episode!] @external
+
+  # RAG fields (from LightRAG subgraph)
+  ragContext: RAGContext @external
+  semanticChunks: [SemanticChunk!] @external
+
+  # Resolved by this subgraph using external data
+  """Health score incorporating temporal and semantic data"""
+  healthScore: Float @requires(fields: "validFrom validTo ragContext { relevanceScore }")
+}
+
+"""
+Author entity - federated across subgraphs.
+"""
+type Author @key(fields: "id") @key(fields: "username") {
+  id: ID!
+  username: String!
+  displayName: String
+  email: String
+  avatarUrl: String
+
+  # External contributions from other subgraphs
+  temporalProfile: AuthorTemporalProfile @external
+  expertiseVector: [Float!] @external
+
+  """Expertise summary combining temporal and semantic data"""
+  expertiseSummary: ExpertiseSummary @requires(fields: "temporalProfile expertiseVector")
+}
+
+"""
+Technology entity - federated across subgraphs.
+"""
+type Technology @key(fields: "id") @key(fields: "canonicalName") {
+  id: ID!
+  name: String!
+  canonicalName: String!
+  category: TechnologyCategory!
+  description: String
+
+  # External data
+  adoptionHistory: [AdoptionDataPoint!] @external
+  semanticRelations: [TechnologyRelation!] @external
+
+  """Trend analysis combining adoption history and semantic relations"""
+  trendAnalysis: TrendAnalysis @requires(fields: "adoptionHistory semanticRelations")
+}
+
+"""
+Insight entity - primarily owned by this subgraph, shared to others.
+"""
+type Insight @key(fields: "id") @shareable {
+  id: ID!
+  title: String!
+  description: String!
+  type: InsightType!
+  confidenceScore: Float!
+
+  # Fields provided to other subgraphs
+  involvedEntityIds: [ID!]! @shareable
+  suggestedActions: [String!]! @shareable
+}
+
+"""
+Query entity - represents executed natural language queries.
+"""
+type Query @key(fields: "id") {
+  id: ID!
+  naturalLanguageQuery: String!
+  generatedQuery: String
+  status: QueryStatus!
+
+  # Results from multiple backends
+  results: QueryResults
+}
+
+# -----------------------------------------------------------------------------
+# External Types (Defined in Other Subgraphs)
+# -----------------------------------------------------------------------------
+
+"""
+Episode from Graphiti temporal knowledge graph.
+Represents a discrete event or change in the graph.
+"""
+type Episode @key(fields: "id", resolvable: false) {
+  id: ID!
+}
+
+"""
+RAG context from LightRAG subgraph.
+Contains relevance scoring and chunk references.
+"""
+type RAGContext @key(fields: "queryId", resolvable: false) {
+  queryId: ID!
+  relevanceScore: Float
+}
+
+"""
+Semantic chunk from LightRAG subgraph.
+"""
+type SemanticChunk @key(fields: "id", resolvable: false) {
+  id: ID!
+}
+
+"""
+Author temporal profile from Graphiti subgraph.
+"""
+type AuthorTemporalProfile @key(fields: "authorId", resolvable: false) {
+  authorId: ID!
+  firstActivityDate: DateTime
+  lastActivityDate: DateTime
+  activityPattern: String
+}
+
+"""
+Technology relation from semantic analysis.
+"""
+type TechnologyRelation @key(fields: "id", resolvable: false) {
+  id: ID!
+  relationType: String
+  strength: Float
+}
+
+"""
+Adoption data point for technology trend analysis.
+"""
+type AdoptionDataPoint @key(fields: "id", resolvable: false) {
+  id: ID!
+  date: DateTime
+  count: Int
+}
+
+# -----------------------------------------------------------------------------
+# Composed Result Types
+# -----------------------------------------------------------------------------
+
+"""
+Health score computed from multiple subgraph data.
+"""
+type HealthScoreBreakdown @shareable {
+  overallScore: Float!
+  temporalScore: Float!
+  semanticScore: Float!
+  communityScore: Float!
+  factors: [HealthFactor!]!
+}
+
+"""
+Factor contributing to health score.
+"""
+type HealthFactor @shareable {
+  name: String!
+  score: Float!
+  weight: Float!
+  source: String!
+}
+
+"""
+Expertise summary combining multiple data sources.
+"""
+type ExpertiseSummary @shareable {
+  topAreas: [ExpertiseArea!]!
+  temporalGrowth: [GrowthMetric!]!
+  semanticClusters: [String!]!
+}
+
+"""
+Area of expertise.
+"""
+type ExpertiseArea @shareable {
+  name: String!
+  score: Float!
+  recentActivity: DateTime
+}
+
+"""
+Growth metric over time.
+"""
+type GrowthMetric @shareable {
+  area: String!
+  startScore: Float!
+  endScore: Float!
+  growthRate: Float!
+}
+
+"""
+Technology trend analysis.
+"""
+type TrendAnalysis @shareable {
+  trend: TrendDirection!
+  momentum: Float!
+  seasonality: String
+  forecast: [ForecastPoint!]!
+  relatedTrends: [String!]!
+}
+
+"""
+Trend direction.
+"""
+enum TrendDirection {
+  RISING
+  STABLE
+  DECLINING
+  VOLATILE
+}
+
+"""
+Forecast data point.
+"""
+type ForecastPoint @shareable {
+  date: DateTime!
+  value: Float!
+  confidence: Float!
+}
+
+# -----------------------------------------------------------------------------
+# Subgraph Query Extensions
+# -----------------------------------------------------------------------------
+
+"""
+Federated query root - each subgraph contributes its queries.
+"""
+type Query {
+  """Get repository by ID (federated)"""
+  repository(id: ID!): Repository
+
+  """Get author by ID (federated)"""
+  author(id: ID!): Author
+
+  """Get technology by ID (federated)"""
+  technology(id: ID!): Technology
+
+  """Get insight by ID (federated)"""
+  insight(id: ID!): Insight
+
+  """
+  Cross-subgraph search combining semantic and graph traversal.
+  Results are enriched by multiple subgraphs.
+  """
+  federatedSearch(
+    query: String!
+    mode: SearchMode!
+    entityTypes: [EntityType!]
+    limit: Int = 20
+  ): FederatedSearchResults! @policy(policies: [["search:execute"]])
+
+  """
+  Unified entity resolution across all subgraphs.
+  """
+  resolveEntity(
+    identifier: String!
+    identifierType: IdentifierType!
+  ): Entity @policy(policies: [["entity:read"]])
+}
+
+"""
+Federated search results combining multiple backends.
+"""
+type FederatedSearchResults @shareable {
+  results: [FederatedSearchResult!]!
+  totalCount: Int!
+  sources: [SearchSource!]!
+  executionPlan: ExecutionPlan
+}
+
+"""
+Individual search result with source attribution.
+"""
+type FederatedSearchResult @shareable {
+  entity: Entity!
+  score: Float!
+  source: String!
+  highlights: [Highlight!]
+  provenance: ResultProvenance
+}
+
+"""
+Search source contribution.
+"""
+type SearchSource @shareable {
+  name: String!
+  type: String!
+  resultCount: Int!
+  executionTimeMs: Int!
+}
+
+"""
+Execution plan for federated query.
+"""
+type ExecutionPlan @shareable {
+  subgraphsQueried: [String!]!
+  parallelPaths: Int!
+  estimatedCost: Int!
+  actualCost: Int
+}
+
+"""
+Result provenance for audit.
+"""
+type ResultProvenance @shareable {
+  originSubgraph: String!
+  transformations: [String!]!
+  confidence: Float!
+}
+
+"""
+Identifier type for entity resolution.
+"""
+enum IdentifierType {
+  ID
+  URL
+  NAME
+  USERNAME
+  EMAIL
+}
+
+# -----------------------------------------------------------------------------
+# Subgraph Mutation Extensions
+# -----------------------------------------------------------------------------
+
+type Mutation {
+  """
+  Execute a query across federated backends.
+  The router determines optimal query routing.
+  """
+  executeFederatedQuery(input: QueryInput!): Query!
+    @policy(policies: [["query:execute"]])
+
+  """
+  Submit feedback that updates multiple subgraphs.
+  Triggers improvement loop across services.
+  """
+  submitFederatedFeedback(input: FeedbackInput!): FeedbackResult!
+    @policy(policies: [["feedback:submit"]])
+}
+
+"""
+Feedback input for federated systems.
+"""
+input FeedbackInput {
+  entityId: ID!
+  entityType: EntityType!
+  feedbackType: FeedbackType!
+  sentiment: FeedbackSentiment!
+  comment: String
+  metadata: JSON
+}
+
+"""
+Feedback type classification.
+"""
+enum FeedbackType {
+  ACCURACY
+  RELEVANCE
+  COMPLETENESS
+  USEFULNESS
+}
+
+"""
+Result of federated feedback submission.
+"""
+type FeedbackResult @shareable {
+  feedbackId: ID!
+  processedBy: [String!]!
+  improvementActions: [String!]!
+}
+
+# -----------------------------------------------------------------------------
+# Subgraph Subscription Extensions
+# -----------------------------------------------------------------------------
+
+type Subscription {
+  """
+  Subscribe to entity updates across all subgraphs.
+  Events are aggregated and deduplicated by the router.
+  """
+  onEntityUpdate(
+    entityTypes: [EntityType!]
+    subgraphs: [String!]
+  ): EntityUpdateEvent!
+
+  """
+  Subscribe to insight generation from any subgraph.
+  """
+  onInsightGenerated(
+    minConfidence: Float
+    sources: [String!]
+  ): Insight!
+}
+
+"""
+Entity update event from federated sources.
+"""
+type EntityUpdateEvent @shareable {
+  entity: Entity!
+  eventType: UpdateEventType!
+  sourceSubgraph: String!
+  timestamp: DateTime!
+  changedFields: [String!]
+}
+
+"""
+Update event type.
+"""
+enum UpdateEventType {
+  CREATED
+  UPDATED
+  DELETED
+  ENRICHED
+}
+
+# -----------------------------------------------------------------------------
+# Gateway Configuration Hints
+# -----------------------------------------------------------------------------
+
+"""
+Configuration for the Apollo Router.
+Applied during supergraph composition.
+"""
+directive @routerConfig on SCHEMA
+
+"""
+Subgraph health check configuration.
+"""
+type SubgraphHealth {
+  name: String!
+  status: HealthStatus!
+  latencyMs: Int!
+  lastCheck: DateTime!
+}
+
+enum HealthStatus {
+  HEALTHY
+  DEGRADED
+  UNHEALTHY
+}
+
+# -----------------------------------------------------------------------------
+# Entity Reference Resolvers
+# -----------------------------------------------------------------------------
+
+"""
+Reference resolver input for Repository entity.
+Used by router to resolve entity references.
+"""
+input RepositoryRepresentation {
+  id: ID!
+}
+
+"""
+Reference resolver input for Author entity.
+Supports resolution by ID or username.
+"""
+input AuthorRepresentation {
+  id: ID
+  username: String
+}
+
+"""
+Reference resolver input for Technology entity.
+Supports resolution by ID or canonical name.
+"""
+input TechnologyRepresentation {
+  id: ID
+  canonicalName: String
+}
+
+# -----------------------------------------------------------------------------
+# Shared Types Across Subgraphs
+# -----------------------------------------------------------------------------
+
+"""DateTime scalar - shared across all subgraphs"""
+scalar DateTime @shareable
+
+"""JSON scalar - shared across all subgraphs"""
+scalar JSON @shareable
+
+"""Entity union - resolved by multiple subgraphs"""
+union Entity @shareable = Repository | Author | Technology | Insight
+
+"""Entity type enumeration - shared"""
+enum EntityType @shareable {
+  REPOSITORY
+  AUTHOR
+  TECHNOLOGY
+  INSIGHT
+  ORGANIZATION
+  CONCEPT
+}
+
+"""Search mode enumeration - shared"""
+enum SearchMode @shareable {
+  SEMANTIC
+  KEYWORD
+  GRAPH
+  HYBRID
+}
+
+"""Query status enumeration - shared"""
+enum QueryStatus @shareable {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+"""Insight type enumeration - shared"""
+enum InsightType @shareable {
+  TREND
+  ANOMALY
+  CORRELATION
+  PREDICTION
+  RECOMMENDATION
+}
+
+"""Technology category enumeration - shared"""
+enum TechnologyCategory @shareable {
+  LANGUAGE
+  FRAMEWORK
+  LIBRARY
+  DATABASE
+  DEVOPS
+  AI_ML
+  OTHER
+}
+
+"""Feedback sentiment enumeration - shared"""
+enum FeedbackSentiment @shareable {
+  POSITIVE
+  NEGATIVE
+  NEUTRAL
+}
+
+"""Search highlight - shared"""
+type Highlight @shareable {
+  field: String!
+  snippets: [String!]!
+}
+
+"""Query input - shared"""
+input QueryInput @shareable {
+  naturalLanguageQuery: String!
+  backend: String
+  limit: Int
+  generateInsights: Boolean
+}
+
+"""Query results - shared"""
+type QueryResults @shareable {
+  totalCount: Int!
+  entities: [Entity!]!
+  aggregations: JSON
+}

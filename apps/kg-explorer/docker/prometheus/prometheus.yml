@@ -1,0 +1,32 @@
+# Prometheus configuration for KG Explorer pipeline monitoring
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'kg-explorer'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files: []
+
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Neo4j metrics (if exposed)
+  - job_name: 'neo4j'
+    static_configs:
+      - targets: ['neo4j:2004']
+    metrics_path: /metrics
+
+  # Application metrics endpoint (when implemented)
+  - job_name: 'kg-explorer-pipeline'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+    metrics_path: /api/metrics
+    scrape_interval: 30s

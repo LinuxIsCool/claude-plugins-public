@@ -1,0 +1,40 @@
+# Cards Plugin .gitignore
+
+# Cloned repositories (managed via git, not committed to this repo)
+skills/resources/repos/*/
+
+# Keep index files (they document what's acquired)
+!skills/resources/*.jsonl
+
+# Keep research outputs (they're the value we generate)
+!skills/research/maps/
+!skills/research/insights/
+
+# URL content (may be large, keep indices only)
+skills/resources/urls/*/*.md
+
+# Transcript content (keep indices only by default)
+skills/resources/transcripts/*/*.md
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Node artifacts
+node_modules/
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS artifacts
+.DS_Store
+Thumbs.db

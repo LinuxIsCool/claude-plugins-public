@@ -1,0 +1,5 @@
+{
+  "latencyP95MaxMs": 5000,
+  "successRateMin": 0.90,
+  "charsPerSecondMin": 5
+}

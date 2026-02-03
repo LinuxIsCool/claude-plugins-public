@@ -1,0 +1,10 @@
+/feature-dev:feature-dev @plugins/voice/specs/01-huggingface-xtts/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/02-piper-tts/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/03-quality-testing/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/04-voice-daemon/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/05-whisper-stt/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/06-vad-integration/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/07-multi-agent-queue/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/08-voice-personality/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/09-tmux-voice-control/ ultrathink
+/feature-dev:feature-dev @plugins/voice/specs/10-audio-buffer-manager/ ultrathink

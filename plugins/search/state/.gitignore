@@ -1,0 +1,7 @@
+# User-specific preferences (not shared)
+*.local.md
+preferences.local.md
+
+# Cache and temporary files
+*.cache
+*.tmp

@@ -1,0 +1,185 @@
+# Basic Extraction Ontology
+# Schema for transcript entity and relationship extraction
+#
+# Version: 1.0.0
+# Compatible with: entity-extraction prompt
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "basic-extraction-ontology-v1"
+
+title: Basic Extraction Ontology
+description: Schema for extracting entities, relationships, and topics from transcripts
+version: "1.0.0"
+
+# =============================================================================
+# Entity Types
+# =============================================================================
+
+entity_types:
+  person:
+    description: A human individual
+    properties:
+      name:
+        type: string
+        required: true
+      normalized:
+        type: string
+        description: Canonical form of the name
+      role:
+        type: string
+        description: Professional role or title
+      organization:
+        type: string
+        description: Primary affiliation
+
+  organization:
+    description: A company, institution, or group
+    properties:
+      name:
+        type: string
+        required: true
+      normalized:
+        type: string
+      type:
+        type: string
+        enum: [company, nonprofit, government, educational, community, other]
+      industry:
+        type: string
+
+  concept:
+    description: An abstract idea, framework, or theory
+    properties:
+      name:
+        type: string
+        required: true
+      normalized:
+        type: string
+      domain:
+        type: string
+        enum: [technology, business, science, philosophy, social, other]
+
+  product:
+    description: A software, hardware, or service offering
+    properties:
+      name:
+        type: string
+        required: true
+      normalized:
+        type: string
+      category:
+        type: string
+        enum: [software, hardware, service, platform, protocol, other]
+      creator:
+        type: string
+
+  event:
+    description: A significant occurrence or happening
+    properties:
+      name:
+        type: string
+        required: true
+      date:
+        type: string
+        format: date
+      location:
+        type: string
+
+  location:
+    description: A physical or virtual place
+    properties:
+      name:
+        type: string
+        required: true
+      type:
+        type: string
+        enum: [city, country, region, venue, virtual, other]
+
+# =============================================================================
+# Relationship Types
+# =============================================================================
+
+relationship_types:
+  works_at:
+    description: Employment or primary affiliation
+    domain: [person]
+    range: [organization]
+
+  created:
+    description: Authorship or creation
+    domain: [person, organization]
+    range: [product, concept]
+
+  uses:
+    description: Utilization or adoption
+    domain: [person, organization]
+    range: [product, concept]
+
+  mentions:
+    description: Reference in speech
+    domain: [person]
+    range: [person, organization, concept, product]
+
+  believes:
+    description: Holds a belief or opinion
+    domain: [person]
+    range: [concept]
+
+  contradicts:
+    description: Opposition or disagreement
+    domain: [concept]
+    range: [concept]
+
+  builds_on:
+    description: Extension or derivation
+    domain: [concept, product]
+    range: [concept, product]
+
+  part_of:
+    description: Membership or component relationship
+    domain: [person, concept, product]
+    range: [organization, concept, product]
+
+  located_in:
+    description: Physical or logical location
+    domain: [person, organization, event]
+    range: [location]
+
+# =============================================================================
+# Topic Classification
+# =============================================================================
+
+topic_domains:
+  - technology
+  - business
+  - science
+  - philosophy
+  - social
+  - environmental
+  - financial
+  - legal
+  - educational
+  - cultural
+
+# =============================================================================
+# Insight Categories
+# =============================================================================
+
+insight_categories:
+  technical:
+    description: Insights about how things work
+  philosophical:
+    description: Insights about values, meaning, or worldview
+  practical:
+    description: Insights about how to do things
+  evaluative:
+    description: Judgments about what is good, bad, or important
+
+# =============================================================================
+# Quality Thresholds
+# =============================================================================
+
+confidence_thresholds:
+  high: 0.8
+  medium: 0.6
+  low: 0.4
+  minimum: 0.3

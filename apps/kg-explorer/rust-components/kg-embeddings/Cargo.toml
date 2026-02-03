@@ -1,0 +1,36 @@
+[package]
+name = "kg-embeddings"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "High-performance vector operations and similarity search with SIMD optimization"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["parallel", "simd"]
+parallel = ["rayon"]
+simd = []
+wasm = ["wasm-bindgen", "js-sys"]
+mmap = ["memmap2"]
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+rayon = { workspace = true, optional = true }
+wasm-bindgen = { workspace = true, optional = true }
+js-sys = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+memmap2 = { workspace = true, optional = true }
+hashbrown = { workspace = true }
+smallvec = { workspace = true }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[[bench]]
+name = "embedding_benchmarks"
+harness = false

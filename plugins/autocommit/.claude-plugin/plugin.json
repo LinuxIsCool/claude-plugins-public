@@ -1,0 +1,27 @@
+{
+  "name": "autocommit",
+  "version": "0.1.0",
+  "description": "Intelligent version control that commits work based on human-agent collaboration signals",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "git",
+    "version-control",
+    "autocommit",
+    "collaboration",
+    "hooks",
+    "headless-claude"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": {
+    "UserPromptSubmit": [{"hooks": [
+      {"type": "command", "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/autocommit-wrapper.sh"}
+    ]}]
+  }
+}

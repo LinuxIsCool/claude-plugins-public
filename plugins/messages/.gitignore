@@ -1,0 +1,18 @@
+# User message content - private data, not code
+.claude/messages/store/content/
+.claude/messages/store/events/
+
+# All views are generated from content - not source code
+.claude/messages/views/
+
+# Search index (generated/runtime)
+.claude/messages/search/
+
+# Node dependencies
+node_modules/
+
+# Voice events (runtime)
+.claude/voice/
+
+# Logging (runtime)
+.claude/logging/

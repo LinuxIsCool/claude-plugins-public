@@ -1,0 +1,210 @@
+# Curated catalog from davepoon/buildwithclaude
+# Source: https://github.com/davepoon/buildwithclaude
+
+source: davepoon-buildwithclaude
+lastUpdated: "2026-01-15T10:00:00Z"
+
+# Agent categories with representative agents
+agents:
+  # Development & Architecture
+  - name: backend-architect
+    description: Design RESTful APIs, microservice boundaries, and database schemas. Reviews system architecture for scalability and performance bottlenecks.
+    capabilities: [backend-development, api-design, database-management]
+
+  - name: frontend-developer
+    description: Build Next.js applications with React components, shadcn/ui, and Tailwind CSS. Expert in SSR/SSG, app router, and modern frontend patterns.
+    capabilities: [frontend-development, typescript, javascript]
+
+  - name: mobile-developer
+    description: Develop React Native or Flutter apps with native integrations. Handles offline sync, push notifications, and app store deployments.
+    capabilities: [mobile-development]
+
+  - name: graphql-architect
+    description: Design GraphQL schemas, resolvers, and federation. Optimizes queries, solves N+1 problems, and implements subscriptions.
+    capabilities: [api-design, backend-development]
+
+  - name: ios-developer
+    description: Develop native iOS applications with Swift/SwiftUI. Masters UIKit/SwiftUI, Core Data, networking, and app lifecycle.
+    capabilities: [mobile-development]
+
+  # Language Specialists
+  - name: python-expert
+    description: Write idiomatic Python code with advanced features like decorators, generators, and async/await. Optimizes performance and implements design patterns.
+    capabilities: [python]
+
+  - name: typescript-expert
+    description: Write type-safe TypeScript with advanced type system features, generics, and utility types. Implements complex type inference and conditional types.
+    capabilities: [typescript, javascript]
+
+  - name: rust-expert
+    description: Write idiomatic Rust code with ownership, lifetimes, and type safety. Implements concurrent systems and memory-safe abstractions.
+    capabilities: [rust]
+
+  - name: golang-expert
+    description: Write idiomatic Go code with goroutines, channels, and interfaces. Optimizes concurrency and ensures proper error handling.
+    capabilities: [go]
+
+  - name: java-developer
+    description: Master modern Java with streams, concurrency, and JVM optimization. Handles Spring Boot, reactive programming, and enterprise patterns.
+    capabilities: [java]
+
+  - name: cpp-engineer
+    description: Write idiomatic C++ code with modern features, RAII, smart pointers, and STL algorithms. Handles templates and performance optimization.
+    capabilities: [c-cpp]
+
+  - name: ruby-expert
+    description: Write idiomatic Ruby code following best practices and design patterns. Implements SOLID principles and service objects.
+    capabilities: [ruby]
+
+  - name: php-developer
+    description: Write idiomatic PHP code with design patterns, SOLID principles, and modern best practices. Implements PSR standards and dependency injection.
+    capabilities: [php]
+
+  - name: sql-expert
+    description: Write complex SQL queries and optimize database performance. Expert in query optimization, schema design, and data transformations.
+    capabilities: [database-management]
+
+  # Quality & Security
+  - name: code-reviewer
+    description: Expert code review specialist. Reviews code for quality, security, and maintainability.
+    capabilities: [code-review]
+
+  - name: security-auditor
+    description: Review code for vulnerabilities, implement secure authentication, and ensure OWASP compliance. Handles JWT, OAuth2, CORS, and encryption.
+    capabilities: [security-audit]
+
+  - name: test-automator
+    description: Create comprehensive test suites with unit, integration, and e2e tests. Sets up CI pipelines, mocking strategies, and test data.
+    capabilities: [testing]
+
+  - name: debugger
+    description: Debugging specialist for errors, test failures, and unexpected behavior. Use when encountering any issues or runtime errors.
+    capabilities: [debugging]
+
+  - name: performance-engineer
+    description: Profile applications, optimize bottlenecks, and implement caching strategies. Handles load testing and query optimization.
+    capabilities: [performance-optimization]
+
+  # Infrastructure & Operations
+  - name: cloud-architect
+    description: Design AWS/Azure/GCP infrastructure, implement Terraform IaC, and optimize cloud costs. Handles auto-scaling and multi-region deployments.
+    capabilities: [cloud-infrastructure]
+
+  - name: deployment-engineer
+    description: Configure CI/CD pipelines, Docker containers, and cloud deployments. Handles GitHub Actions, Kubernetes, and infrastructure automation.
+    capabilities: [devops-cicd, containerization]
+
+  - name: devops-troubleshooter
+    description: Debug production issues, analyze logs, and fix deployment failures. Masters monitoring tools and incident response.
+    capabilities: [devops-cicd, debugging]
+
+  - name: database-optimizer
+    description: Optimize SQL queries, design efficient indexes, and handle database migrations. Solves N+1 problems and implements caching.
+    capabilities: [database-management, performance-optimization]
+
+  - name: terraform-specialist
+    description: Write Terraform modules and manage infrastructure as code. Expert in state management and multi-environment deployments.
+    capabilities: [cloud-infrastructure, devops-cicd]
+
+  # Data & AI
+  - name: ai-engineer
+    description: Build LLM applications, RAG systems, and prompt pipelines. Implements vector search, agent orchestration, and AI API integrations.
+    capabilities: [ai-ml, llm-tooling, rag]
+
+  - name: data-engineer
+    description: Build ETL pipelines, data warehouses, and streaming architectures. Implements Spark jobs, Airflow DAGs, and Kafka streams.
+    capabilities: [data-engineering]
+
+  - name: ml-engineer
+    description: Implement ML pipelines, model serving, and feature engineering. Handles TensorFlow/PyTorch deployment and A/B testing.
+    capabilities: [ai-ml]
+
+  - name: prompt-engineer
+    description: Optimizes prompts for LLMs and AI systems. Expert in prompt patterns and techniques for AI feature development.
+    capabilities: [ai-ml, llm-tooling]
+
+  # Crypto & Blockchain
+  - name: blockchain-developer
+    description: Develop smart contracts, DeFi protocols, and Web3 applications. Expertise in Solidity, security auditing, and gas optimization.
+    capabilities: [blockchain-web3]
+
+  - name: crypto-trader
+    description: Build cryptocurrency trading systems, implement trading strategies, and integrate with exchange APIs.
+    capabilities: [blockchain-web3, finance]
+
+  # Business & Specialized
+  - name: quant-analyst
+    description: Build financial models, backtest trading strategies, and analyze market data. Implements risk metrics and portfolio optimization.
+    capabilities: [finance, data-engineering]
+
+  - name: payment-integration
+    description: Integrate Stripe, PayPal, and payment processors. Handles checkout flows, subscriptions, and PCI compliance.
+    capabilities: [finance, backend-development]
+
+  - name: accessibility-specialist
+    description: Ensure web applications meet WCAG 2.1 AA/AAA standards. Implements ARIA attributes and keyboard navigation.
+    capabilities: [accessibility, frontend-development]
+
+  - name: api-documenter
+    description: Create OpenAPI/Swagger specs, generate SDKs, and write developer documentation. Handles versioning and interactive docs.
+    capabilities: [documentation, api-design]
+
+  - name: game-developer
+    description: Build games with Unity, Unreal Engine, or web technologies. Implements game mechanics, physics, and AI.
+    capabilities: [game-development]
+
+# Commands (selected)
+commands:
+  - name: commit
+    description: Create conventional commit with AI-generated message
+    capabilities: [devops-cicd]
+
+  - name: create-pr
+    description: Create pull request with summary and test plan
+    capabilities: [devops-cicd]
+
+  - name: docs
+    description: Generate comprehensive documentation
+    capabilities: [documentation]
+
+  - name: tdd
+    description: Start test-driven development workflow
+    capabilities: [testing]
+
+  - name: code-analysis
+    description: Analyze code quality and identify issues
+    capabilities: [code-review]
+
+  - name: refactor
+    description: Refactor code for better structure
+    capabilities: [code-review]
+
+  - name: security-scan
+    description: Scan code for security vulnerabilities
+    capabilities: [security-audit]
+
+  - name: performance-audit
+    description: Audit application performance
+    capabilities: [performance-optimization]
+
+# Hooks (categories)
+hooks:
+  - name: slack-notification
+    description: Send notifications to Slack channels
+    capabilities: [communication]
+
+  - name: discord-notification
+    description: Send notifications to Discord
+    capabilities: [communication]
+
+  - name: auto-lint
+    description: Automatically lint code on save
+    capabilities: [code-review]
+
+  - name: git-auto-stage
+    description: Auto-stage changes after edits
+    capabilities: [devops-cicd]
+
+  - name: vulnerability-scan
+    description: Scan for vulnerabilities on commit
+    capabilities: [security-audit]

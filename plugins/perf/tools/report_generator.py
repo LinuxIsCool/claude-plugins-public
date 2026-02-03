@@ -1,0 +1,217 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = []
+# ///
+"""Performance report generator.
+
+Generates markdown reports from hook analysis and cache analysis results.
+"""
+
+import json
+import sys
+from datetime import datetime
+from pathlib import Path
+
+
+def generate_markdown_report(
+    session_id: str,
+    profile_name: str,
+    hook_analysis: dict,
+    cache_analysis: dict,
+    start_time: str,
+    end_time: str,
+    cwd: str
+) -> str:
+    """Generate a markdown performance report."""
+    lines = []
+
+    # Header
+    lines.append(f"# Performance Profile: {profile_name}")
+    lines.append("")
+    lines.append(f"**Session ID:** {session_id[:8] if session_id else 'N/A'}")
+    lines.append(f"**Start:** {start_time}")
+    lines.append(f"**End:** {end_time}")
+    lines.append(f"**Project:** {cwd}")
+    lines.append("")
+
+    # Summary section
+    lines.append("## Summary")
+    lines.append("")
+
+    hook_summary = hook_analysis.get("summary", {})
+    total_events = hook_summary.get("total_events", 0)
+    by_type = hook_summary.get("by_type", {})
+
+    total_hook_time = sum(t.get("total_ms", 0) for t in by_type.values())
+    lines.append(f"- **Hook Executions:** {total_events} events ({total_hook_time:.0f}ms cumulative)")
+
+    cache = cache_analysis.get("cache", {})
+    staleness = cache_analysis.get("staleness", {})
+    stale_count = staleness.get("stale_count", 0)
+
+    lines.append(f"- **Cache Size:** {cache.get('total_size_human', 'N/A')} ({cache.get('total_files', 0)} files)")
+    lines.append(f"- **Stale Plugins:** {stale_count}")
+    lines.append("")
+
+    # Hook performance section
+    lines.append("## Hook Performance")
+    lines.append("")
+
+    if by_type:
+        lines.append("| Hook Type | Count | Avg (ms) | Max (ms) | Total (ms) |")
+        lines.append("|-----------|-------|----------|----------|------------|")
+
+        for hook_type, stats in sorted(by_type.items(), key=lambda x: x[1].get("total_ms", 0), reverse=True):
+            lines.append(f"| {hook_type} | {stats['count']} | {stats['avg_ms']:.1f} | {stats['max_ms']:.1f} | {stats['total_ms']:.1f} |")
+
+        lines.append("")
+    else:
+        lines.append("*No hook timing data available.*")
+        lines.append("")
+
+    # Slowest operations
+    all_hooks = hook_analysis.get("hooks", {})
+    slowest = []
+    for hook_type, events in all_hooks.items():
+        for event in events:
+            if "duration_ms" in event:
+                slowest.append({
+                    "type": hook_type,
+                    "name": event.get("name", "unknown"),
+                    "duration_ms": event["duration_ms"]
+                })
+
+    if slowest:
+        slowest.sort(key=lambda x: x["duration_ms"], reverse=True)
+        lines.append("### Slowest Operations")
+        lines.append("")
+        for i, op in enumerate(slowest[:5], 1):
+            lines.append(f"{i}. **{op['name']}** ({op['type']}): {op['duration_ms']:.1f}ms")
+        lines.append("")
+
+    # Cache analysis section
+    lines.append("## Cache Analysis")
+    lines.append("")
+    lines.append(f"**Total Size:** {cache.get('total_size_human', 'N/A')}")
+    lines.append(f"**Total Files:** {cache.get('total_files', 0)}")
+    lines.append(f"**Plugins Cached:** {cache.get('plugin_count', 0)}")
+    lines.append("")
+
+    if staleness.get("stale_plugins"):
+        lines.append("### Stale Plugins")
+        lines.append("")
+        for plugin in staleness["stale_plugins"]:
+            lines.append(f"- **{plugin['name']}** (stale by {plugin['delta_seconds']}s)")
+        lines.append("")
+
+    largest = cache.get("largest_plugins", [])
+    if largest:
+        lines.append("### Largest Plugins")
+        lines.append("")
+        lines.append("| Plugin | Size | Files |")
+        lines.append("|--------|------|-------|")
+        for plugin in largest[:5]:
+            lines.append(f"| {plugin['name']} | {plugin['size_human']} | {plugin['file_count']} |")
+        lines.append("")
+
+    # Recommendations section
+    recommendations = cache_analysis.get("recommendations", [])
+    if recommendations:
+        lines.append("## Recommendations")
+        lines.append("")
+        for rec in sorted(recommendations, key=lambda r: {"high": 0, "medium": 1, "low": 2}.get(r["priority"], 3)):
+            priority_icon = {"high": "!!!", "medium": "!!", "low": "!"}.get(rec["priority"], "")
+            lines.append(f"### {priority_icon} {rec['title']}")
+            lines.append("")
+            lines.append(rec["description"])
+            lines.append("")
+            if rec.get("action"):
+                lines.append(f"**Action:** `{rec['action']}`")
+                lines.append("")
+            if rec.get("impact"):
+                lines.append(f"**Impact:** {rec['impact']}")
+                lines.append("")
+
+    # Footer
+    lines.append("---")
+    lines.append("")
+    lines.append(f"*Generated by perf plugin at {datetime.now().isoformat()}*")
+
+    return "\n".join(lines)
+
+
+def save_report(report: str, output_dir: Path, profile_name: str) -> Path:
+    """Save report to file."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    filename = f"{profile_name}-{timestamp}.md"
+    filepath = output_dir / filename
+
+    filepath.write_text(report)
+    return filepath
+
+
+def main():
+    """CLI entry point."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Generate performance report")
+    parser.add_argument("--hook-data", help="Path to hook analysis JSON")
+    parser.add_argument("--cache-data", help="Path to cache analysis JSON")
+    parser.add_argument("--session-id", default="unknown")
+    parser.add_argument("--profile-name", default="profile")
+    parser.add_argument("--start-time", default="")
+    parser.add_argument("--end-time", default="")
+    parser.add_argument("--cwd", default=".")
+    parser.add_argument("--output-dir", help="Directory to save report")
+
+    args = parser.parse_args()
+
+    # Load analysis data with error handling
+    hook_analysis = {}
+    cache_analysis = {}
+
+    if args.hook_data:
+        try:
+            with open(args.hook_data) as f:
+                hook_analysis = json.load(f)
+        except FileNotFoundError:
+            print(f"Error: Hook data file not found: {args.hook_data}", file=sys.stderr)
+            sys.exit(1)
+        except json.JSONDecodeError as e:
+            print(f"Error: Invalid JSON in hook data: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    if args.cache_data:
+        try:
+            with open(args.cache_data) as f:
+                cache_analysis = json.load(f)
+        except FileNotFoundError:
+            print(f"Error: Cache data file not found: {args.cache_data}", file=sys.stderr)
+            sys.exit(1)
+        except json.JSONDecodeError as e:
+            print(f"Error: Invalid JSON in cache data: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    # Generate report
+    report = generate_markdown_report(
+        session_id=args.session_id,
+        profile_name=args.profile_name,
+        hook_analysis=hook_analysis,
+        cache_analysis=cache_analysis,
+        start_time=args.start_time or datetime.now().isoformat(),
+        end_time=args.end_time or datetime.now().isoformat(),
+        cwd=args.cwd
+    )
+
+    if args.output_dir:
+        output_path = save_report(report, Path(args.output_dir), args.profile_name)
+        print(f"Report saved to: {output_path}")
+    else:
+        print(report)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,18 @@
+{
+  "name": "observatory",
+  "version": "0.1.0",
+  "description": "Plugin Observatory - Discover, catalog, and analyze external Claude Code plugins from GitHub marketplaces. Compare local capabilities vs external offerings to identify gaps.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "plugins",
+    "discovery",
+    "catalog",
+    "marketplace",
+    "gap-analysis",
+    "external"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"]
+}

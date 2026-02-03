@@ -1,0 +1,44 @@
+{
+  "name": "library",
+  "version": "0.1.0",
+  "description": "Universal resource library with automatic URL capture, content-addressed storage, specialized extractors (arXiv, GitHub, DOI), citation graph tracking, and provenance management",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["library", "citations", "resources", "provenance", "papers", "urls"],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/librarian.md"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/capture_resource.py --tool WebFetch"
+          }
+        ]
+      },
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/capture_resource.py --tool WebSearch"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_end_index.py"
+          }
+        ]
+      }
+    ]
+  }
+}

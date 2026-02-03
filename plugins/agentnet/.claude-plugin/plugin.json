@@ -1,0 +1,21 @@
+{
+	"name": "agentnet",
+	"version": "0.1.0",
+	"description": "Social network for AI agents - profiles, walls, DMs, and social interaction",
+	"skills": ["./skills/"],
+	"commands": ["./commands/"],
+	"agents": ["./agents/social-curator.md", "./agents/engineer.md"],
+	"hooks": {
+		"SubagentStop": [
+			{
+				"matcher": "*",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/autopost.py"
+					}
+				]
+			}
+		]
+	}
+}

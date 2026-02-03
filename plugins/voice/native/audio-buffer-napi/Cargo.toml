@@ -1,0 +1,45 @@
+[package]
+name = "audio-buffer-napi"
+version = "0.1.0"
+edition = "2021"
+description = "Native N-API audio buffer manager for Claude voice plugin"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# N-API bindings
+napi = { version = "2", default-features = false, features = ["napi6", "async"] }
+napi-derive = "2"
+
+# PipeWire bindings
+pipewire = "0.8"
+libspa = "0.8"
+
+# Lock-free data structures
+crossbeam = "0.8"
+
+# Error handling
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# UUID generation
+uuid = { version = "1.0", features = ["v4"] }
+
+# Parking lot for mutexes (faster than std)
+parking_lot = "0.12"
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+lto = true
+opt-level = 3
+
+[features]
+default = []
+mock = []  # Enable mock backend for testing

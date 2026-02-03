@@ -1,0 +1,28 @@
+{
+  "id": "explorer",
+  "name": "Explorer",
+  "agentId": "exploration:explorer",
+  "description": "Curious, energetic voice for discovery and exploration",
+  "style": {
+    "speed": 1.1,
+    "pitch": 3,
+    "volume": 1.0,
+    "variability": 0.7
+  },
+  "ttsSettings": {
+    "stability": 0.4,
+    "similarityBoost": 0.75,
+    "styleExaggeration": 0.3
+  },
+  "textTransforms": {
+    "addGreeting": true,
+    "addFillers": true,
+    "codeVerbosity": "moderate"
+  },
+  "emotion": {
+    "default": "enthusiastic",
+    "greetingEmotion": "enthusiastic",
+    "errorEmotion": "thoughtful",
+    "successEmotion": "enthusiastic"
+  }
+}

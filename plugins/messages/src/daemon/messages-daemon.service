@@ -1,0 +1,45 @@
+# Messages Daemon - systemd user service
+#
+# Unified messaging sync daemon for Signal, WhatsApp, Telegram, Gmail.
+# Depends on signal-cli-daemon for real-time Signal sync.
+#
+# Installation:
+#   See install-services.sh in this directory
+#
+# Management:
+#   systemctl --user status messages-daemon
+#   systemctl --user restart messages-daemon
+#   journalctl --user -u messages-daemon -f
+
+[Unit]
+Description=Messages Sync Daemon
+Documentation=https://github.com/linuxiscool/claude-plugins
+After=network.target signal-cli-daemon.service
+Wants=signal-cli-daemon.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bun run /path/to/marketplace/plugins/messages/src/daemon/daemon.ts
+WorkingDirectory=/path/to/marketplace
+Restart=always
+RestartSec=10
+
+# Load environment from .env (credentials for all platforms)
+EnvironmentFile=/path/to/marketplace/.env
+Environment=NODE_ENV=production
+
+# Resource limits (4 platforms need ~500MB base + headroom for spikes)
+MemoryMax=768M
+CPUQuota=30%
+
+# Logging (use journalctl to view)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=messages-daemon
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

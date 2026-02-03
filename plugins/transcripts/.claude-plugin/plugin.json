@@ -1,0 +1,30 @@
+{
+  "name": "transcripts",
+  "version": "0.1.0",
+  "description": "Transcript management with voice fingerprinting, speaker database, and knowledge extraction",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "transcripts",
+    "transcription",
+    "audio",
+    "video",
+    "voice-fingerprinting",
+    "speaker-identification",
+    "diarization",
+    "entity-extraction",
+    "knowledge-graph",
+    "whisper",
+    "youtube"
+  ],
+  "skills": ["./skills/"],
+  "commands": ["./commands/"],
+  "hooks": ["./hooks/"],
+  "agents": [
+    "./agents/transcriber.md",
+    "./agents/transcript-analyst.md",
+    "./agents/researcher.md"
+  ],
+  "mcp": ["./.mcp.json"]
+}

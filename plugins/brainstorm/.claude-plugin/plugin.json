@@ -1,0 +1,11 @@
+{
+  "name": "brainstorm",
+  "version": "0.1.0",
+  "description": "Brainstorm with the user in an organized way",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["brainstorm", "planning", "thinking", "reflecting"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/muse.md"]
+}

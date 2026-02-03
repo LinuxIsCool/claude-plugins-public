@@ -1,0 +1,23 @@
+{
+  "name": "exploration",
+  "version": "0.4.0",
+  "description": "Environmental curiosity plugin for exploring the substrate, tools, network, and cosmos in which Claude exists",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": [
+    "exploration",
+    "environment",
+    "curiosity",
+    "substrate",
+    "discovery",
+    "self-improvement"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": ["./agents/explorer.md"]
+}

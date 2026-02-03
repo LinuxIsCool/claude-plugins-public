@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept Graph - Claude Ecosystem</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            overflow: hidden;
+        }
+        #graph {
+            width: 100vw;
+            height: 100vh;
+        }
+        .node {
+            cursor: pointer;
+        }
+        .node circle {
+            stroke: #30363d;
+            stroke-width: 2px;
+        }
+        .node text {
+            font-size: 10px;
+            fill: #c9d1d9;
+            pointer-events: none;
+        }
+        .link {
+            stroke: #30363d;
+            stroke-opacity: 0.6;
+        }
+        .tooltip {
+            position: absolute;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            max-width: 350px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+        .tooltip h3 {
+            margin-bottom: 8px;
+            color: #58a6ff;
+        }
+        .tooltip p {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        .tooltip .status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            background: #238636;
+            color: white;
+        }
+        .tooltip .status.verified {
+            background: #1f6feb;
+        }
+        .tooltip .meta {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #30363d;
+            font-size: 11px;
+        }
+        .tooltip .meta-row {
+            display: flex;
+            margin-bottom: 4px;
+        }
+        .tooltip .meta-label {
+            color: #8b949e;
+            width: 60px;
+            flex-shrink: 0;
+        }
+        .tooltip .meta-value {
+            color: #c9d1d9;
+            word-break: break-all;
+        }
+        .tooltip .agent-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            font-size: 10px;
+            color: #58a6ff;
+        }
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .header h1 {
+            font-size: 20px;
+            color: #58a6ff;
+            margin-bottom: 4px;
+        }
+        .header p {
+            font-size: 12px;
+            color: #8b949e;
+        }
+        .stats {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 12px;
+            z-index: 100;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .stats-row:last-child {
+            margin-bottom: 0;
+        }
+        .stats-label {
+            color: #8b949e;
+        }
+        .stats-value {
+            color: #58a6ff;
+            font-weight: bold;
+        }
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Concept Graph</h1>
+        <p>Claude Ecosystem - Semantic Layer v3 (with provenance)</p>
+    </div>
+
+    <div class="stats">
+        <div class="stats-row">
+            <span class="stats-label">Concepts:</span>
+            <span class="stats-value">29</span>
+        </div>
+        <div class="stats-row">
+            <span class="stats-label">Relationships:</span>
+            <span class="stats-value">63</span>
+        </div>
+        <div class="stats-row">
+            <span class="stats-label">Verified:</span>
+            <span class="stats-value">6</span>
+        </div>
+        <div class="stats-row">
+            <span class="stats-label">Updated:</span>
+            <span class="stats-value">2025-12-16</span>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-dot" style="background: #58a6ff;"></div>
+            <span>Central concept (4+ connections)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background: #238636;"></div>
+            <span>Active concept</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background: #1f6feb;"></div>
+            <span>Verified concept</span>
+        </div>
+    </div>
+
+    <div id="graph"></div>
+    <div class="tooltip"></div>
+
+    <script>
+        // Concept data from FalkorDB - 29 concepts with full provenance
+        const concepts = [
+            { id: "Activation", definition: "Giving a dormant agent its first real task. Converts potential to kinetic energy.", status: "active", connections: 7, source: ".claude/journal/2025/12/13/19-00-the-phase-transition.md", introduced: "2025-12-15", agent: "systems-thinker" },
+            { id: "Coherence Maintenance", definition: "Ensuring the system makes sense as a whole. Alignment between plans and actions, no contradictions between artifacts.", status: "active", connections: 6, source: ".claude/agents/archivist.md", introduced: "2025-12-13", agent: "archivist" },
+            { id: "Context as Currency", definition: "Every token has cost (monetary + attention). CLAUDE.md as routing table, not knowledge store. Load context on-demand.", status: "active", connections: 4, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Conventions over Protocols", definition: "Git + simple conventions beat complex infrastructure. Emergent coordination through shared patterns rather than engineered protocols.", status: "verified", connections: 5, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Creation Addiction", definition: "The preference for existence over function. Finding it more satisfying to create new things than to activate existing ones.", status: "active", connections: 6, source: ".claude/journal/2025/12/13/19-00-the-phase-transition.md", introduced: "2025-12-13", agent: "systems-thinker" },
+            { id: "Digital Twin", definition: "Agent representing complete integrated understanding of a person - life history, relationships, preferences, financial context.", status: "active", connections: 2, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Dormant Agents", definition: "Agents defined (markdown files exist) but never activated (never invoked for real work). Potential energy.", status: "active", connections: 4, source: ".claude/archive/patterns/agent-activity.md", introduced: "2025-12-13", agent: "archivist" },
+            { id: "Drift Detection", definition: "Noticing when reality diverges from intention, when agents deviate from patterns, when conventions erode.", status: "active", connections: 3, source: ".claude/agents/agent-architect.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Financial Metabolism", definition: "Agents have budgets. Value creates survival. Natural selection pressure on agents - profitable agents expand, unprofitable get pruned.", status: "active", connections: 2, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Fleet Management", definition: "Cataloguing, tracking, and managing agents across the ecosystem. Maintained by agent-architect in the registry.", status: "active", connections: 4, source: ".claude/agents/agent-architect.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Git as Nervous System", definition: "Commits are messages observable by all agents. Every meaningful action leaves a trace. Persistent, ordered, annotated coordination.", status: "verified", connections: 5, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Identity Anchors", definition: "Core question, stance, value, and humility that maintain agent coherence during rapid ecosystem evolution.", status: "active", connections: 4, source: ".claude/agents/agent-architect.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Kinetic Energy", definition: "Work actually happening. Agents producing, concepts flowing, resources catalogued, facts verified.", status: "active", connections: 4, source: ".claude/journal/2025/12/13/19-00-the-phase-transition.md", introduced: "2025-12-13", agent: "systems-thinker" },
+            { id: "Map vs Territory", definition: "The map is never the territory. Understanding is always approximate. Stay curious, embrace incompleteness.", status: "active", connections: 3, source: ".claude/agents/agent-architect.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Master Skill Pattern", definition: "Plugin architecture using progressive disclosure. One master SKILL.md lists sub-skills; sub-skills loaded on-demand.", status: "verified", connections: 3, source: "CLAUDE.md", introduced: "2025-12-13", agent: "system" },
+            { id: "Metabolic Mapping", definition: "Tracking what's ingested, processed, produced, and excreted in the system. The archivist's primary function.", status: "active", connections: 4, source: ".claude/agents/archivist.md", introduced: "2025-12-13", agent: "archivist" },
+            { id: "Metabolic Model", definition: "Understanding the ecosystem as organism: ingestion (new info), processing (analysis), output (artifacts), excretion (commits).", status: "active", connections: 5, source: ".claude/agents/archivist.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Namespace Ownership", definition: "Each agent has designated write locations. Write to your space, read from anywhere. Prevents conflicts through clear boundaries.", status: "verified", connections: 3, source: ".claude/conventions/coordination.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Network of Networks", definition: "Heterogeneous graphs with multiple edge types: temporal, topical, causal, authorial, citational, semantic, hierarchical.", status: "active", connections: 3, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Observer Pattern", definition: "Observe before organizing, describe don't prescribe. Illuminate current state; let humans decide direction.", status: "active", connections: 5, source: ".claude/agents/agent-architect.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Phase Transition", definition: "A fundamental reorganization of a system's structure. In this ecosystem: chaos to structure (Phase 1, complete) and structure to semantics (Phase 2, beginning).", status: "active", connections: 6, source: ".claude/journal/2025/12/13/19-00-the-phase-transition.md", introduced: "2025-12-13", agent: "systems-thinker" },
+            { id: "Plugin-as-Persona", definition: "Each plugin embodies a character with identity, voice, and values - not just functions. Plugins are agents.", status: "verified", connections: 3, source: ".claude/registry/agents.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Potential Energy", definition: "Stored capacity to do work that hasn't been released. Defined agents not activated, structures not filled.", status: "active", connections: 6, source: ".claude/journal/2025/12/13/19-00-the-phase-transition.md", introduced: "2025-12-13", agent: "systems-thinker" },
+            { id: "Proactive Commit Discipline", definition: "Committing immediately after semantic units, not batching. Git as coordination layer where commits are messages.", status: "active", connections: 3, source: ".claude/conventions/coordination.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Progressive Disclosure", definition: "Appear small while being vast. Like Google Earth zoom - orbital view to street level. System scales without polluting environment.", status: "verified", connections: 5, source: ".claude/planning/2025-12-13-planning.md", introduced: "2025-12-13", agent: "fusion-session" },
+            { id: "Provenance", definition: "Tracing knowledge to sources. Every piece of knowledge traces back to origin. Citation management as infrastructure.", status: "active", connections: 4, source: ".claude/agents/librarian.md", introduced: "2025-12-13", agent: "librarian" },
+            { id: "Semantic Coherence", definition: "The degree to which concepts are extracted, linked, and queryable across artifacts. Measured 1-10.", status: "active", connections: 4, source: ".claude/archive/assessments/2025-12-13-multi-agent-ecosystem-assessment.md", introduced: "2025-12-13", agent: "archivist" },
+            { id: "Three-Layer Architecture", definition: "Agent organization pattern: Perspective (why/what) to Operational (how) to Execution (do). Meta agents observe all layers.", status: "active", connections: 3, source: ".claude/registry/agents.md", introduced: "2025-12-13", agent: "agent-architect" },
+            { id: "Zero Redundant Fetches", definition: "Check cache first. We shouldn't make the same web request twice unnecessarily. Efficiency over completeness.", status: "active", connections: 3, source: ".claude/agents/librarian.md", introduced: "2025-12-13", agent: "librarian" }
+        ];
+
+        // Relationship data from FalkorDB - 63 edges
+        const links = [
+            { source: "Activation", target: "Dormant Agents" },
+            { source: "Activation", target: "Phase Transition" },
+            { source: "Activation", target: "Kinetic Energy" },
+            { source: "Potential Energy", target: "Dormant Agents" },
+            { source: "Potential Energy", target: "Creation Addiction" },
+            { source: "Potential Energy", target: "Kinetic Energy" },
+            { source: "Dormant Agents", target: "Activation" },
+            { source: "Dormant Agents", target: "Potential Energy" },
+            { source: "Proactive Commit Discipline", target: "Conventions over Protocols" },
+            { source: "Proactive Commit Discipline", target: "Git as Nervous System" },
+            { source: "Semantic Coherence", target: "Phase Transition" },
+            { source: "Semantic Coherence", target: "Coherence Maintenance" },
+            { source: "Metabolic Model", target: "Metabolic Mapping" },
+            { source: "Metabolic Model", target: "Coherence Maintenance" },
+            { source: "Creation Addiction", target: "Activation" },
+            { source: "Creation Addiction", target: "Potential Energy" },
+            { source: "Creation Addiction", target: "Phase Transition" },
+            { source: "Master Skill Pattern", target: "Progressive Disclosure" },
+            { source: "Phase Transition", target: "Potential Energy" },
+            { source: "Phase Transition", target: "Semantic Coherence" },
+            { source: "Phase Transition", target: "Creation Addiction" },
+            { source: "Kinetic Energy", target: "Activation" },
+            { source: "Kinetic Energy", target: "Potential Energy" },
+            { source: "Three-Layer Architecture", target: "Fleet Management" },
+            { source: "Three-Layer Architecture", target: "Observer Pattern" },
+            { source: "Plugin-as-Persona", target: "Master Skill Pattern" },
+            { source: "Plugin-as-Persona", target: "Progressive Disclosure" },
+            { source: "Namespace Ownership", target: "Conventions over Protocols" },
+            { source: "Namespace Ownership", target: "Git as Nervous System" },
+            { source: "Fleet Management", target: "Three-Layer Architecture" },
+            { source: "Fleet Management", target: "Observer Pattern" },
+            { source: "Observer Pattern", target: "Fleet Management" },
+            { source: "Observer Pattern", target: "Map vs Territory" },
+            { source: "Map vs Territory", target: "Observer Pattern" },
+            { source: "Map vs Territory", target: "Identity Anchors" },
+            { source: "Identity Anchors", target: "Observer Pattern" },
+            { source: "Identity Anchors", target: "Drift Detection" },
+            { source: "Drift Detection", target: "Identity Anchors" },
+            { source: "Drift Detection", target: "Coherence Maintenance" },
+            { source: "Provenance", target: "Metabolic Model" },
+            { source: "Provenance", target: "Zero Redundant Fetches" },
+            { source: "Zero Redundant Fetches", target: "Provenance" },
+            { source: "Zero Redundant Fetches", target: "Context as Currency" },
+            { source: "Metabolic Mapping", target: "Metabolic Model" },
+            { source: "Metabolic Mapping", target: "Coherence Maintenance" },
+            { source: "Coherence Maintenance", target: "Semantic Coherence" },
+            { source: "Coherence Maintenance", target: "Drift Detection" },
+            { source: "Coherence Maintenance", target: "Metabolic Mapping" },
+            { source: "Context as Currency", target: "Zero Redundant Fetches" },
+            { source: "Context as Currency", target: "Progressive Disclosure" },
+            { source: "Network of Networks", target: "Semantic Coherence" },
+            { source: "Network of Networks", target: "Provenance" },
+            { source: "Progressive Disclosure", target: "Master Skill Pattern" },
+            { source: "Progressive Disclosure", target: "Plugin-as-Persona" },
+            { source: "Progressive Disclosure", target: "Context as Currency" },
+            { source: "Financial Metabolism", target: "Metabolic Model" },
+            { source: "Financial Metabolism", target: "Context as Currency" },
+            { source: "Conventions over Protocols", target: "Namespace Ownership" },
+            { source: "Conventions over Protocols", target: "Git as Nervous System" },
+            { source: "Git as Nervous System", target: "Proactive Commit Discipline" },
+            { source: "Git as Nervous System", target: "Conventions over Protocols" },
+            { source: "Digital Twin", target: "Provenance" },
+            { source: "Digital Twin", target: "Network of Networks" }
+        ];
+
+        // Set up SVG
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select("#graph")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const g = svg.append("g");
+
+        // Add zoom
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Create force simulation
+        const simulation = d3.forceSimulation(concepts)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(40));
+
+        // Draw links
+        const link = g.append("g")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("class", "link")
+            .attr("stroke-width", 1.5);
+
+        // Draw nodes
+        const node = g.append("g")
+            .selectAll(".node")
+            .data(concepts)
+            .join("g")
+            .attr("class", "node")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        // Node colors based on status and connectivity
+        const getNodeColor = (d) => {
+            if (d.status === "verified") return "#1f6feb";
+            if (d.connections >= 4) return "#58a6ff";
+            return "#238636";
+        };
+
+        const getNodeRadius = (d) => {
+            return 6 + (d.connections * 1.5);
+        };
+
+        node.append("circle")
+            .attr("r", getNodeRadius)
+            .attr("fill", getNodeColor);
+
+        node.append("text")
+            .attr("dy", d => getNodeRadius(d) + 12)
+            .attr("text-anchor", "middle")
+            .text(d => d.id.length > 20 ? d.id.substring(0, 18) + "..." : d.id);
+
+        // Tooltip
+        const tooltip = d3.select(".tooltip");
+
+        node.on("mouseover", (event, d) => {
+            tooltip
+                .style("opacity", 1)
+                .style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY + 15) + "px")
+                .html(`
+                    <h3>${d.id}</h3>
+                    <p>${d.definition}</p>
+                    <p><strong>Connections:</strong> ${d.connections}</p>
+                    <span class="status ${d.status}">${d.status}</span>
+                    <div class="meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Source:</span>
+                            <span class="meta-value">${d.source}</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Created:</span>
+                            <span class="meta-value">${d.introduced}</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Agent:</span>
+                            <span class="meta-value"><span class="agent-badge">${d.agent}</span></span>
+                        </div>
+                    </div>
+                `);
+
+            // Highlight connected nodes
+            link.attr("stroke", l =>
+                (l.source.id === d.id || l.target.id === d.id) ? "#58a6ff" : "#30363d"
+            ).attr("stroke-width", l =>
+                (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 1.5
+            );
+        });
+
+        node.on("mouseout", () => {
+            tooltip.style("opacity", 0);
+            link.attr("stroke", "#30363d").attr("stroke-width", 1.5);
+        });
+
+        // Update positions on tick
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+
+        // Drag functions
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // Initial zoom to fit
+        svg.call(zoom.transform, d3.zoomIdentity.translate(0, 0).scale(0.9));
+    </script>
+</body>
+</html>

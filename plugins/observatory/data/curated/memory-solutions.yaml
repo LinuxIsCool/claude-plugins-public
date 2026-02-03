@@ -1,0 +1,267 @@
+# Curated catalog of Claude Code memory solutions
+# Cross-repository collection of agent memory and context management tools
+# Last updated: 2026-01-20
+
+source: memory-solutions
+lastUpdated: "2026-01-20T10:50:00Z"
+description: >
+  Collection of MCP servers, plugins, and tools for Claude Code long-term memory,
+  context persistence, and knowledge management across sessions.
+
+# Memory solution categories
+solutions:
+
+  # ============================================================================
+  # MCP Servers - Model Context Protocol implementations
+  # ============================================================================
+
+  - name: mcp-memory-service
+    type: mcp-server
+    source: github/doobidoo
+    repoUrl: https://github.com/doobidoo/mcp-memory-service
+    description: >
+      Stop re-explaining your project to AI every session. Automatic context memory
+      for Claude, VS Code, Cursor, and 13+ AI tools.
+    capabilities: [agent-memory, context-management]
+    storage: local
+    features:
+      - automatic-context
+      - multi-tool-support
+      - session-persistence
+    status: active
+
+  - name: mcp-memory-keeper
+    type: mcp-server
+    source: github/mkreyman
+    repoUrl: https://github.com/mkreyman/mcp-memory-keeper
+    description: >
+      MCP server for persistent context management in AI coding assistants.
+      Enables cross-session sharing between multiple Claude instances.
+    capabilities: [agent-memory, context-management]
+    storage: local
+    features:
+      - cross-session-sharing
+      - multi-agent-support
+      - work-history-tracking
+    status: active
+
+  - name: claude-memory-mcp
+    type: mcp-server
+    source: lobehub/randall-gross
+    docsUrl: https://lobehub.com/mcp/randall-gross-claude-memory-mcp
+    description: >
+      Local knowledge graph database MCP server for Claude AI assistants
+      providing persistent memory storage using SQLite.
+    capabilities: [agent-memory, knowledge-graph]
+    storage: sqlite
+    features:
+      - knowledge-graph
+      - sqlite-backend
+      - shared-desktop-code
+    status: active
+
+  - name: claude-code-memory
+    type: mcp-server
+    source: lobehub/viralvoodoo
+    docsUrl: https://lobehub.com/mcp/viralvoodoo-claude-code-memory
+    description: >
+      Neo4j-based MCP server providing intelligent memory capabilities for
+      Claude Code with relationship mapping and contextual development assistance.
+    capabilities: [agent-memory, knowledge-graph]
+    storage: neo4j
+    features:
+      - graph-database
+      - relationship-mapping
+      - contextual-assistance
+    status: active
+
+  - name: domain-memory-agent
+    type: mcp-server
+    source: jeremylongshore
+    repoUrl: https://github.com/jeremylongshore/claude-code-plugins-plus-skills
+    pluginPath: plugins/mcp/domain-memory-agent
+    description: >
+      Knowledge base with TF-IDF semantic search and extractive summarization.
+      No ML dependencies required.
+    capabilities: [agent-memory, knowledge-graph, rag]
+    storage: local
+    features:
+      - tf-idf-search
+      - extractive-summarization
+      - no-ml-dependencies
+    status: active
+
+  - name: lumera-agent-memory
+    type: mcp-server
+    source: jeremylongshore
+    repoUrl: https://github.com/jeremylongshore/claude-code-plugins-plus-skills
+    pluginPath: plugins/mcp/lumera-agent-memory
+    description: >
+      Durable agent memory with Cascade object storage (Lumera Protocol blockchain)
+      and local FTS index. AES-256-GCM encrypted, permanent storage.
+    capabilities: [agent-memory, blockchain-web3]
+    storage: cascade-blockchain
+    features:
+      - blockchain-storage
+      - aes-256-encryption
+      - memory-cards
+      - pii-redaction
+      - permanent-storage
+    author: Intent Solutions IO
+    status: active
+    notes: >
+      Integrates with Lumera Protocol's Cascade module for "pay once, store forever"
+      decentralized storage. Self-healing redundancy across SuperNodes.
+
+  # ============================================================================
+  # Plugins - Claude Code native plugins
+  # ============================================================================
+
+  - name: claude-mem
+    type: plugin
+    source: github/thedotmack
+    repoUrl: https://github.com/thedotmack/claude-mem
+    description: >
+      Claude Code plugin that automatically captures everything Claude does during
+      coding sessions, compresses with AI using agent-sdk, and injects relevant
+      context back into future sessions.
+    capabilities: [agent-memory, context-management]
+    storage: local
+    features:
+      - automatic-capture
+      - ai-compression
+      - endless-mode
+      - biomimetic-architecture
+    status: active
+    notes: >
+      "Endless Mode" implements biomimetic memory architecture with natural decay
+      patterns for extended sessions.
+
+  - name: memory-store-plugin
+    type: plugin
+    source: github/julep-ai
+    repoUrl: https://github.com/julep-ai/memory-store-plugin
+    description: >
+      Intelligent development tracking and context management plugin using memory store.
+      Tracks session lifecycle, git state, and quality metrics.
+    capabilities: [agent-memory, context-management]
+    storage: local
+    features:
+      - session-tracking
+      - git-state-capture
+      - quality-scores
+      - automatic-context-loading
+    metrics:
+      - session-duration
+      - files-changed
+      - commits-made
+      - quality-score
+    status: active
+
+  # ============================================================================
+  # Recommended Combinations
+  # ============================================================================
+
+combinations:
+  - name: Arbatov Super-Memory Stack
+    source: blog.arbatov.dev
+    description: >
+      Recommended combination from Vlad Arbatov's blog for comprehensive memory.
+    components:
+      - name: memory-bank
+        scope: per-project
+        purpose: Notes on project overview, tech stack, decisions
+      - name: knowledge-graph
+        scope: global
+        purpose: Structured facts and relationships across all projects
+    blogUrl: https://blog.arbatov.dev/claude-code-3-plugins-for-a-super-memory-2c4b8ba9fdb5
+
+# ============================================================================
+# Capability Matrix
+# ============================================================================
+
+capabilityMatrix:
+  agent-memory:
+    - mcp-memory-service
+    - mcp-memory-keeper
+    - claude-memory-mcp
+    - claude-code-memory
+    - domain-memory-agent
+    - lumera-agent-memory
+    - claude-mem
+    - memory-store-plugin
+
+  context-management:
+    - mcp-memory-service
+    - mcp-memory-keeper
+    - claude-mem
+    - memory-store-plugin
+
+  knowledge-graph:
+    - claude-memory-mcp
+    - claude-code-memory
+    - domain-memory-agent
+
+  blockchain-web3:
+    - lumera-agent-memory
+
+# ============================================================================
+# Storage Technology Matrix
+# ============================================================================
+
+storageMatrix:
+  local:
+    - mcp-memory-service
+    - mcp-memory-keeper
+    - domain-memory-agent
+    - claude-mem
+    - memory-store-plugin
+
+  sqlite:
+    - claude-memory-mcp
+
+  neo4j:
+    - claude-code-memory
+
+  cascade-blockchain:
+    - lumera-agent-memory
+
+# ============================================================================
+# Local Gap Analysis
+# ============================================================================
+
+localComparison:
+  existingCapabilities:
+    - name: logging-plugin
+      path: plugins/logging
+      capabilities: [session-tracking]
+      storage: jsonl-files
+      gaps:
+        - semantic-search
+        - cross-session-context
+        - ai-summarization
+
+    - name: journal-plugin
+      path: plugins/journal
+      capabilities: [documentation]
+      storage: markdown-files
+      gaps:
+        - automatic-capture
+        - session-linking
+
+  recommendedIntegrations:
+    - priority: high
+      solution: mcp-memory-keeper
+      reason: Cross-session sharing enables multi-agent workflows
+
+    - priority: high
+      solution: domain-memory-agent
+      reason: TF-IDF search complements existing FTS5 patterns
+
+    - priority: medium
+      solution: claude-mem
+      reason: AI compression reduces storage while maintaining context
+
+    - priority: exploration
+      solution: lumera-agent-memory
+      reason: Permanent blockchain storage for long-term archival

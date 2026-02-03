@@ -1,0 +1,35 @@
+{
+  "name": "@plugins/messages",
+  "version": "0.1.0",
+  "description": "Universal messaging backbone with content-addressed storage and DID-based identity",
+  "type": "module",
+  "main": "src/cli.ts",
+  "scripts": {
+    "cli": "bun src/cli.ts",
+    "mcp": "bun src/server/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@journeyapps/sqlcipher": "^5.3.1",
+    "@noble/ed25519": "~2.1.0",
+    "@noble/hashes": "~1.5.0",
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
+    "discord.js-selfbot-v13": "^3.7.1",
+    "imapflow": "^1.2.1",
+    "input": "^1.0.1",
+    "mailparser": "^3.9.1",
+    "qrcode-terminal": "^0.12.0",
+    "signal-sdk": "^0.0.8",
+    "telegram": "^2.26.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/mailparser": "^3.4.6",
+    "typescript": "^5.0.0"
+  },
+  "trustedDependencies": [
+    "@journeyapps/sqlcipher",
+    "signal-sdk"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "suite_name": "ecosystem",
+  "timestamp": "2025-12-18T16:39:06.688275",
+  "configs": [
+    {
+      "name": "vector",
+      "elapsed_seconds": 402.23494935035706,
+      "metrics": {
+        "mrr": 1.0,
+        "precision": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "recall": {
+          "1": 0.2,
+          "3": 0.6,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "ndcg": {
+          "1": 0.7991803278688525,
+          "3": 0.8869085316349735,
+          "5": 0.9409502288592906,
+          "10": 0.9409502288592906
+        },
+        "num_queries": 122
+      }
+    }
+  ],
+  "category_breakdown": {
+    "entity": {
+      "vector": 1.0
+    },
+    "confirmation": {
+      "vector": 1.0
+    },
+    "discovery": {
+      "vector": 1.0
+    },
+    "process": {
+      "vector": 1.0
+    },
+    "historical": {
+      "vector": 1.0
+    }
+  }
+}

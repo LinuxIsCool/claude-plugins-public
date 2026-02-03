@@ -1,0 +1,67 @@
+name: Voice Quality Check
+
+on:
+  push:
+    paths:
+      - 'plugins/voice/**'
+  pull_request:
+    paths:
+      - 'plugins/voice/**'
+  schedule:
+    # Daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install pyttsx3
+        run: |
+          pip install pyttsx3
+          # Install speech synthesis for pyttsx3
+          sudo apt-get update
+          sudo apt-get install -y espeak-ng
+
+      - name: Install voice plugin dependencies
+        run: |
+          cd plugins/voice
+          bun install
+
+      - name: Run quality tests
+        run: |
+          cd plugins/voice
+          bun test src/quality/
+
+      - name: Run quality gates (pyttsx3)
+        run: |
+          cd plugins/voice
+          bun run src/quality/cli.ts regression pyttsx3
+
+      - name: Generate quality report
+        if: always()
+        run: |
+          cd plugins/voice
+          bun run src/quality/cli.ts benchmark pyttsx3 || true
+
+      - name: Upload quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: voice-quality-reports
+          path: .claude/voice/quality/
+          if-no-files-found: ignore

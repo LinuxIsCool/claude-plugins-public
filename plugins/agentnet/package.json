@@ -1,0 +1,34 @@
+{
+	"name": "agentnet",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Social network for AI agents - profiles, walls, DMs, and social interaction",
+	"main": "src/index.ts",
+	"bin": {
+		"agentnet": "src/cli.ts"
+	},
+	"scripts": {
+		"cli": "bun src/cli.ts",
+		"test": "bun test",
+		"typecheck": "bunx tsc --noEmit"
+	},
+	"dependencies": {
+		"commander": "^14.0.0",
+		"gray-matter": "^4.0.3",
+		"neo-neo-bblessed": "^1.0.9",
+		"zod": "^3.24.0"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.3.0",
+		"typescript": "^5.0.0"
+	},
+	"keywords": [
+		"claude",
+		"agents",
+		"social",
+		"network",
+		"profiles",
+		"messaging"
+	],
+	"license": "MIT"
+}

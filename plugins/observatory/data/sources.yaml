@@ -1,0 +1,34 @@
+# Plugin Observatory - Source Repositories
+# These are the external plugin marketplaces we catalog
+
+version: "1.0"
+lastUpdated: "2026-01-15T10:00:00Z"
+
+sources:
+  - id: davepoon-buildwithclaude
+    name: Build with Claude
+    repoUrl: https://github.com/davepoon/buildwithclaude
+    description: >
+      Comprehensive marketplace for Claude Code extensions with 117 agents,
+      175 commands, 28 hooks, and 50 bundled plugins organized by function.
+    pluginsPath: "*"
+    enabled: true
+    stats:
+      agents: 117
+      commands: 175
+      hooks: 28
+      skills: 26
+      plugins: 50
+
+  - id: jeremylongshore-plugins
+    name: Claude Code Plugins Plus Skills
+    repoUrl: https://github.com/jeremylongshore/claude-code-plugins-plus-skills
+    description: >
+      Skills-focused marketplace with 739 agent skills, 270+ plugins,
+      and comprehensive learning resources including Jupyter notebooks.
+    pluginsPath: plugins/*
+    enabled: true
+    stats:
+      skills: 739
+      plugins: 270
+      mcpServers: 21

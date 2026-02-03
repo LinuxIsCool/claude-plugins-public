@@ -1,0 +1,15 @@
+{
+  "name": "skill-dev",
+  "version": "0.1.0",
+  "description": "Meta-plugin for skill development. Provides comprehensive guidance on creating Claude Code skills, universal skill tree protocols, skill discovery, and visualization. The definitive resource for building skills that build skills.",
+  "author": {
+    "name": "linuxiscool"
+  },
+  "keywords": ["skill", "skill-development", "skill-tree", "progressive-disclosure", "claude-code"],
+  "skills": ["./skills/"],
+  "agents": [
+    "./agents/skill-architect.md",
+    "./agents/skill-crawler.md",
+    "./agents/skill-reviewer.md"
+  ]
+}

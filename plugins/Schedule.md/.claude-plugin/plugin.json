@@ -1,0 +1,14 @@
+{
+  "name": "schedule",
+  "version": "1.0.0",
+  "description": "A markdown-native weekly schedule manager with color-coded time blocks. View and manage your schedule through Claude conversations or a visual web interface.",
+  "author": {
+    "name": "Schedule.md Contributors"
+  },
+  "repository": "https://github.com/example/schedule.md",
+  "license": "MIT",
+  "keywords": ["schedule", "calendar", "time-management", "weekly-planner"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/timekeeper.md"],
+  "mcpServers": "./.mcp.json"
+}
